@@ -3,6 +3,8 @@ Gamestate = require "hump.gamestate"
 game = require "game"
 
 function love.load()
+    math.randomseed( os.time() )
+
     Gamestate.registerEvents()
     Gamestate.switch(game)
 end

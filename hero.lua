@@ -15,6 +15,11 @@ Hero = Class{
         if not self.joystick then
             return
         end
+
+        if self.joystick:isGamepadDown("a") then
+            self:dropItem()
+        end
+
         x_axis, y_axis = self.joystick:getAxes()
         axis = vector(x_axis, y_axis)
 
@@ -28,7 +33,11 @@ Hero = Class{
 
     end,
     draw = function(self)
-        love.graphics.setColor(255, 0, 0)
+        if self.carrying then
+            love.graphics.setColor(200, 0, 0)
+        else
+            love.graphics.setColor(255, 0, 0)
+        end
         love.graphics.rectangle("fill", self.pos.x, self.pos.y, self.width, self.height)
     end
 }
