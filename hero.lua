@@ -5,7 +5,7 @@ CollidingEntity = require "collidingentity"
 Hero = Class{
     __includes = CollidingEntity,
     init = function(self, pos)
-        Entity.init(self, pos, 18, 18)
+        CollidingEntity.init(self, pos, 18, 18)
         self.image = love.graphics.newImage("graphics/hero1.png")
         self.quad = love.graphics.newQuad(0, 0, 18, 18, self.image:getWidth(), self.image:getHeight())
         self.joystick = nil
@@ -15,7 +15,8 @@ Hero = Class{
     setJoystick = function(self, joystick)
         self.joystick = joystick
     end,
-    update = function(self, dt, collfn)
+    update = function(self, dt, collfn, game)
+        self:checkRekt(game)
         local time = love.timer.getTime()
         local image_ind = (math.floor(4*time)) % (self.image_range[2] - self.image_range[1]) + self.image_range[1]
         self.quad:setViewport(image_ind * 18, 0, 18, 18)
@@ -49,7 +50,7 @@ Hero = Class{
 
     end,
     draw = function(self)
-        love.graphics.setColor(255, 255, 255)
+        self:drawColor()
         love.graphics.draw(self.image,
                            self.quad,
                            math.floor(self.pos.x + 0.5 - (self.flipped and -18 or 0)),
@@ -57,7 +58,14 @@ Hero = Class{
                            0,
                            (self.flipped and -1 or 1),
                            1)
-    end
+    end,
+    gettingRekt = function(self)
+        if not self.joystick then
+            return
+        end
+
+        self.joystick:setVibration(1, 1, self.hurt_time)
+    end,
 }
 
 return Hero

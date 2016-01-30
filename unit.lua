@@ -14,6 +14,7 @@ Unit = Class{
         self.target = target
     end,
     update = function(self, dt, collfn, game, pathfn)
+        self:checkRekt(game)
         local time = love.timer.getTime()
         local image_ind = (math.floor(3*time))%4
         if image_ind == 3 then
@@ -36,9 +37,13 @@ Unit = Class{
             self:dropItem()
             game:rekt(self)
         end
+
+        if self:middlepoint():dist(game.hero:middlepoint()) < 16 then
+            game.hero:takeDamage()
+        end
     end,
     draw = function(self)
-        love.graphics.setColor(255, 255, 255, 255)
+        self:drawColor()
         love.graphics.draw(self.image,
                            self.quad,
                            math.floor(self.pos.x + 0.5 - (self.flipped and -18 or 0)),
