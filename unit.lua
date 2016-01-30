@@ -22,7 +22,7 @@ Unit = Class{
         self.quad:setViewport(image_ind * 18, 0, 18, 18)
         local trg = self:getPath(dt, game, pathfn)
         if trg ~= nil then
-            self.dir =  trg*24 + vector(6, 0) - self.pos + vector(8,8)
+            self.dir =  trg*24 - vector((24-self.width)/2, (24-self.height)/2) - self.pos + vector(8,8)
             self.pos = self.pos + self.dir:normalized() * dt * self.speed
             if self.dir.x > 0 then
                 self.flipped = true
