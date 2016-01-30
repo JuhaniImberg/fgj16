@@ -6,6 +6,8 @@ TM = require "tilemap"
 Hero = require "hero"
 item = require "item"
 Unit = require "unit"
+MtDoom = require "mtdoom"
+HQ = require "hq"
 
 
 local game = {}
@@ -51,6 +53,9 @@ function game:init()
         self:addRandomUnit()
         self:addRandomItem()
     end
+
+    table.insert(self.entities, MtDoom(vector(24, 24)))
+    table.insert(self.entities, HQ(vector(24, 28 * 24)))
 
     self.hero = Hero(vector(48, 48))
     table.insert(self.entities, self.hero)

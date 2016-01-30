@@ -7,6 +7,8 @@ Item = Class{
         self.width = width or 24
         self.height = height or 24
         self.being_carried = false
+        self.destroyed = false
+        self.captured = false
     end,
     middlepoint = function(self)
         return self.pos + vector(self.width / 2, self.height / 2)
