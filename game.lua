@@ -8,6 +8,7 @@ item = require "item"
 Unit = require "unit"
 MtDoom = require "mtdoom"
 HQ = require "hq"
+Commander = require "commander"
 
 
 local game = {}
@@ -58,6 +59,7 @@ function game:init()
     table.insert(self.entities, HQ(vector(24, 28 * 24)))
 
     self.hero = Hero(vector(48, 48))
+    self.commander = Commander(vector(48, 27 * 24))
     table.insert(self.entities, self.hero)
 end
 
@@ -68,8 +70,8 @@ end
 
 function game.addRandomItem(self)
     local ntype = item.itemtypes[math.random(#item.itemtypes)]
-    local nitem = item.Item(vector(math.random(0, 53) * 24,
-                                   math.random(0, 30) * 24),
+    local nitem = item.Item(vector(math.random(1, 51) * 24,
+                                   math.random(1, 29) * 24),
                             ntype)
     table.insert(self.items, nitem)
 end
@@ -79,6 +81,7 @@ function game:update(dt)
     for i, item in ipairs(self.items) do
         item:update(dt, self.entities)
     end
+    self.commander:update(dt, self)
     for i, entity in ipairs(self.entities) do
         entity:update(dt, helpers.bind(self.tm, 'collides'), self)
     end
@@ -89,6 +92,7 @@ function game:draw()
     for i, nitem in ipairs(self.items) do
         nitem:draw()
     end
+    self.commander:draw()
     for i, entity in ipairs(self.entities) do
         entity:draw()
     end
@@ -96,6 +100,7 @@ end
 
 function game:joystickadded(joystick)
     self.hero:setJoystick(joystick)
+    -- self.commander:setJoystick(joystick)
 end
 
 return game
