@@ -1,3 +1,4 @@
+vector = require "hump/vector"
 TileSet = require "tileset"
 ti = require "tileinfo"
 
@@ -17,7 +18,7 @@ return TileSet("graphics/tileset.png", 24, 24,
                    ti.TileInfo("e", 4, 0),
                    ti.TileInfo("f", 5, 0),
                    ti.TileInfo("g", 6, 0),
-                   ti.TileInfo("h", 7, 0, true),
+                   ti.AnimatedTileInfo("h", {vector(7, 0),vector(3, 4),vector(4, 4),vector(5, 4)}, true),
                    ti.TileInfo("i", 8, 0),
 
                    ti.TileInfo("j", 0, 1, true),
@@ -44,7 +45,7 @@ return TileSet("graphics/tileset.png", 24, 24,
                    ti.TileInfo("2", 1, 3),
                    ti.TileInfo("3", 2, 3, true),
                    ti.TileInfo("4", 3, 3, true),
-                   ti.TileInfo("5", 4, 3, true),	
+                   ti.TileInfo("5", 4, 3, true),
                    ti.TileInfo("6", 5, 3, true),
                    ti.TileInfo("7", 6, 3, true),
                    ti.TileInfo("8", 7, 3, true),
