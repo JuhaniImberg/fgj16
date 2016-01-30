@@ -80,6 +80,13 @@ end
 function editor:mousemoved(x, y)
     self.commander.pos.x = x - 12
     self.commander.pos.y = y - 12
+    if love.mouse.isDown(1) then
+        self.commander:place()
+    end
+end
+function editor:wheelmoved(x,y)
+    self.commander.selected = self.commander.selected+y
+    self.commander:updateTileInfo()
 end
 function editor:mousepressed(x, y, button)
     self.commander.pos.x = x - 12
