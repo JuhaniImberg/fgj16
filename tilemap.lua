@@ -68,25 +68,28 @@ TileMap = Class{
 
         local ycol, xcol = false, false
 
-        if math.floor(epos2.y / self.tileset.tile_height)-1 >= #self.collisions or epos.y / self.tileset.tile_height <= 0 then
+        if math.floor(epos2.y / self.tileset.tile_height)-1 >= #self.collisions-1 or epos.y / self.tileset.tile_height <= 0 then
             ycol = true
-        else
-            if self.collisions[math.floor(epos.y/self.tileset.tile_height)+1][math.floor((epos.x)/self.tileset.tile_width)+1]
-                or self.collisions[math.floor(epos.y/self.tileset.tile_height)+1][math.floor((epos2.x)/self.tileset.tile_width)+1]
-                or self.collisions[math.floor(epos2.y/self.tileset.tile_height)+1][math.floor((epos.x)/self.tileset.tile_width)+1]
-                or self.collisions[math.floor(epos2.y/self.tileset.tile_height)+1][math.floor((epos2.x)/self.tileset.tile_width)+1] then
-                ycol = true
-            end
         end
-        if math.floor(epos2.x / self.tileset.tile_width)-1 >= #self.collisions[1] or epos.x / self.tileset.tile_width <= 0 then
+        if math.floor(epos2.x / self.tileset.tile_width)-1 >= #self.collisions[1]-1 or epos.x / self.tileset.tile_width <= 0 then
             xcol = true
-        else
-            if self.collisions[math.floor((epos.y)/self.tileset.tile_height)+1][math.floor((epos.x)/self.tileset.tile_width)+1]
-                or self.collisions[math.floor((epos.y)/self.tileset.tile_height)+1][math.floor((epos2.x)/self.tileset.tile_width)+1]
-                or self.collisions[math.floor((epos2.y)/self.tileset.tile_height)+1][math.floor((epos.x)/self.tileset.tile_width)+1]
-                or self.collisions[math.floor((epos2.y)/self.tileset.tile_height)+1][math.floor((epos2.x)/self.tileset.tile_width)+1] then
-                xcol = true
-            end
+        end
+
+        if xcol or ycol then
+            return xcol,  ycol
+        end
+
+        if self.collisions[math.floor(epos.y/self.tileset.tile_height)+1][math.floor((epos.x)/self.tileset.tile_width)+1]
+            or self.collisions[math.floor(epos.y/self.tileset.tile_height)+1][math.floor((epos2.x)/self.tileset.tile_width)+1]
+            or self.collisions[math.floor(epos2.y/self.tileset.tile_height)+1][math.floor((epos.x)/self.tileset.tile_width)+1]
+            or self.collisions[math.floor(epos2.y/self.tileset.tile_height)+1][math.floor((epos2.x)/self.tileset.tile_width)+1] then
+            ycol = true
+        end
+        if self.collisions[math.floor((epos.y)/self.tileset.tile_height)+1][math.floor((epos.x)/self.tileset.tile_width)+1]
+            or self.collisions[math.floor((epos.y)/self.tileset.tile_height)+1][math.floor((epos2.x)/self.tileset.tile_width)+1]
+            or self.collisions[math.floor((epos2.y)/self.tileset.tile_height)+1][math.floor((epos.x)/self.tileset.tile_width)+1]
+            or self.collisions[math.floor((epos2.y)/self.tileset.tile_height)+1][math.floor((epos2.x)/self.tileset.tile_width)+1] then
+            xcol = true
         end
         return xcol, ycol
     end,
