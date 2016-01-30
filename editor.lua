@@ -63,7 +63,7 @@ function editor:keyreleased(key)
     if key == "space" then
         self:save()
     end
-    if key == "return" then
+    if key == "return" or key == "tab" then
         self.commander.selected_tm = self.commander.selected_tm + 1
         self.commander:updateSelectedTM()
     end
@@ -73,6 +73,9 @@ function editor:keyreleased(key)
     end
     if key == "right" then
         self.layers[2].visible = not self.layers[2].visible
+    end
+    if key == "up" then
+        self.commander:pick()
     end
 
     if love.keyboard.isDown("lshift") then
@@ -97,6 +100,9 @@ function editor:mousemoved(x, y)
     if love.mouse.isDown(2) then
         self.commander:erase()
     end
+    if love.mouse.isDown(3) then
+        self.commander:pick()
+    end
 end
 
 function editor:wheelmoved(x,y)
@@ -114,8 +120,7 @@ function editor:mousepressed(x, y, button)
         self.commander:erase()
     end
     if button == 3 then
-        self.commander.selected_tm = self.commander.selected_tm + 1
-        self.commander:updateSelectedTM()
+        self.commander:pick()
     end
 end
 

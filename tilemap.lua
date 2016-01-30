@@ -43,6 +43,9 @@ TileMap = Class{
                                          (y-1)*self.tileset.tile_height)
         end
     end,
+    getTileChar = function(self, x, y)
+        return self.map[y][x]
+    end,
     draw = function(self)
         if not self.visible then
             return

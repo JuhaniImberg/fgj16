@@ -64,6 +64,18 @@ EditorCommander = Class{
         self:place()
         self:updateTileInfo()
     end,
+    pick = function(self)
+        local c = self.tm:getTileChar(math.floor(self.pos.x / 24 + 0.5) + 1,
+                                      math.floor(self.pos.y / 24 + 0.5) + 1)
+        for i, info in ipairs(self.tm.tileset.tiles) do
+            if info.char == c then
+                self.selected = i
+                self:updateTileInfo()
+                return
+            end
+        end
+
+    end,
     draw = function(self)
         love.graphics.setColor(255, 255, 255)
         local rpos = self.pos:clone()
