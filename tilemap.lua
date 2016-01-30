@@ -12,22 +12,34 @@ TileMap = Class{
         self.animated = {}
         self.collisions = {}
         self.frame = 1
-        for y = 1, #map do
-            col = map[y];
+        for y = 1, #mapstr do
+            col = mapstr[y];
             self.map[y] = {}
             self.ids[y] = {}
             self.collisions[y] = {}
             for x=1, #col do
                 local c = col:sub(x,x)
-                self.map[y][x] = c
-                local tile_info = self.tileset:getTileInfo(c)
-                if tile_info:isAnimated() then
-                    table.insert(self.animated, {x=x, y=y})
-                end
-                self.collisions[y][x] = tile_info.solid
-                self.ids[y][x] = self.sb:add(tile_info:getQuad(),
-                    (x-1)*self.tileset.tile_width,(y-1)*self.tileset.tile_height)
+                self:setTile(x, y, c)
             end
+        end
+    end,
+    setTile = function(self, x, y, c)
+        print(x, y, c)
+        self.map[y][x] = c
+        local tile_info = self.tileset:getTileInfo(c)
+        if tile_info:isAnimated() then
+            table.insert(self.animated, {x=x, y=y})
+        end
+        self.collisions[y][x] = tile_info.solid
+        if self.ids[y][x] then
+            self.sb:set(self.ids[y][x],
+                        tile_info:getQuad(),
+                        (x-1)*self.tileset.tile_width,
+                        (y-1)*self.tileset.tile_height)
+        else
+            self.ids[y][x] = self.sb:add(tile_info:getQuad(),
+                                         (x-1)*self.tileset.tile_width,
+                                         (y-1)*self.tileset.tile_height)
         end
     end,
     draw = function(self)

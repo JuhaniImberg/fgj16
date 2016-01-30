@@ -1,8 +1,66 @@
 TileSet = require "tileset"
 ti = require "tileinfo"
 
-return TileSet("graphics/tileset.png", 24, 24, {
-    ti.TileInfo(".", 0, 0),
-    ti.TileInfo("#", 8, 3, true),
-    ti.AnimatedTileInfo("w", {{x=7,y=0}, {x=3,y=4}, {x=4,y=4}, {x=5,y=4}})
-})
+return TileSet("graphics/tileset.png", 24, 24,
+               {
+                   -- a	b c d e	f g h i
+                   -- j k l m n o p q r
+                   -- s t u v w x y z 0
+                   -- 1 2 3 4 5 6 7 8 9
+
+                   ti.TileInfo("a", 0, 0),
+                   ti.TileInfo("b", 1, 0),
+                   ti.TileInfo("c", 2, 0),
+                   ti.TileInfo("d", 3, 0),
+                   ti.TileInfo("e", 4, 0),
+                   ti.TileInfo("f", 5, 0),
+                   ti.TileInfo("g", 6, 0),
+                   ti.TileInfo("h", 7, 0),
+                   ti.TileInfo("i", 8, 0),
+
+                   ti.TileInfo("j", 0, 1),
+                   ti.TileInfo("k", 1, 1),
+                   ti.TileInfo("l", 2, 1),
+                   ti.TileInfo("m", 3, 1),
+                   ti.TileInfo("n", 4, 1),
+                   ti.TileInfo("o", 5, 1),
+                   ti.TileInfo("p", 6, 1),
+                   ti.TileInfo("q", 7, 1),
+                   ti.TileInfo("r", 8, 1),
+
+                   ti.TileInfo("s", 0, 2),
+                   ti.TileInfo("t", 1, 2),
+                   ti.TileInfo("u", 2, 2),
+                   ti.TileInfo("v", 3, 2),
+                   ti.TileInfo("w", 4, 2),
+                   ti.TileInfo("x", 5, 2),
+                   ti.TileInfo("y", 6, 2),
+                   ti.TileInfo("z", 7, 2),
+                   ti.TileInfo("0", 8, 2),
+
+                   ti.TileInfo("1", 0, 3),
+                   ti.TileInfo("2", 1, 3),
+                   ti.TileInfo("3", 2, 3),
+                   ti.TileInfo("4", 3, 3),
+                   ti.TileInfo("5", 4, 3),
+                   ti.TileInfo("6", 5, 3),
+                   ti.TileInfo("7", 6, 3),
+                   ti.TileInfo("8", 7, 3),
+                   ti.TileInfo("9", 8, 3),
+
+                   -- a	b c d e	f g h i
+                   -- j k l m n o p q r
+                   -- s t u v w x y z 0
+                   -- 1 2 3 4 5 6 7 8 9
+
+                   ti.TileInfo("A", 0, 4),
+                   ti.TileInfo("B", 1, 4),
+                   ti.TileInfo("C", 2, 4),
+                   ti.TileInfo("D", 3, 4),
+                   ti.TileInfo("E", 4, 4),
+                   ti.TileInfo("F", 5, 4),
+                   ti.TileInfo("G", 6, 4),
+                   ti.TileInfo("H", 7, 4),
+                   ti.TileInfo("I", 8, 4)
+               }
+)
