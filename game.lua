@@ -35,7 +35,7 @@ function game:init()
     table.insert(self.entities, self.mtdoom)
     table.insert(self.entities, self.hq)
 
-    self.hero = Hero(vector(48, 48))
+    self.hero = Hero(vector(24, 48))
     self.commander = Commander(vector(48, 27 * 24))
     table.insert(self.entities, self.hero)
 
