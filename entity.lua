@@ -7,6 +7,7 @@ Entity = Class{
         self.height = height or 24
         self.speed = speed or 100
         self.carrying = nil
+        self.radius = 8
     end,
     middlepoint = function(self)
         return self.pos + vector(self.width / 2, self.height / 2)

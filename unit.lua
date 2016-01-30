@@ -29,6 +29,10 @@ Unit = Class{
                 self.flipped = false
             end
         end
+
+        if self.carrying and self:middlepoint():dist(game.hq:middlepoint()) < 16 then
+            self:dropItem()
+        end
     end,
     draw = function(self)
         love.graphics.setColor(255, 255, 255, 255)
@@ -46,7 +50,7 @@ Unit = Class{
                 return self.trg
             end
         end
-        local mid = game.hero:middlepoint():clone()
+        local mid = self.carrying and game.hq:middlepoint():clone() or game.hero:middlepoint():clone()
         local pos = self.pos:clone() + vector(8,8)
         mid.x = math.floor(mid.x/24)
         mid.y = math.floor(mid.y/24)
