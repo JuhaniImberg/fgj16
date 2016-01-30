@@ -1,15 +1,15 @@
 vector = require "hump.vector"
 
-Entity = require "entity"
+CollidingEntity = require "collidingentity"
 
 Unit = Class{
-    __includes = Entity,
+    __includes = CollidingEntity,
     init = function(self, pos)
         Entity.init(self, pos, 16, 16)
         self.speed = 75
     end,
     update = function(self, dt, collfn, game)
-        self.pos = self.pos + ((game.hero:middlepoint() - self.pos):normalized() * self.speed * dt)
+        self:move((game.hero:middlepoint() - self.pos):normalized(), dt, collfn)
     end,
     draw = function(self)
         if self.carrying then
