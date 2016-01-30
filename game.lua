@@ -17,7 +17,7 @@ function game:init()
             "%.....w....?",
             }
 
-    self.tm = TM(tileset, map)
+    self.tm = TM(tileset, map, 4)
     self.entities = {}
 
     self.hero = Hero(vector(0, 0))
@@ -25,7 +25,7 @@ function game:init()
 end
 
 function game:update(dt)
-    self.tm:update()
+    self.tm:update(dt)
     for i, entity in ipairs(self.entities) do
         entity:update(dt)
     end

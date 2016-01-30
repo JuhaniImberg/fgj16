@@ -2,8 +2,9 @@ Class = require "hump/class"
 
 
 TileMap = Class{
-    init = function(self, tileset, mapstr)
+    init = function(self, tileset, mapstr, animation_speed)
         self.tileset = tileset
+        self.animation_speed = 1/animation_speed
         self.map = {}
         self.sb = love.graphics.newSpriteBatch(tileset.image)
         self.ids = {}
@@ -29,13 +30,13 @@ TileMap = Class{
         love.graphics.setColor(255, 255, 255)
         love.graphics.draw(self.sb)
     end,
-    update = function(self)
+    update = function(self, dt)
         for i=1, #self.animated do
-            self.frame = self.frame + 1
+            self.frame = self.frame + dt
             local a = self.animated[i]
             local id = self.ids[a.y][a.x]
             local ti = self.tileset:getTileInfo(self.map[a.y][a.x])
-            local quad = ti:getNextQuad(self.frame)
+            local quad = ti:getNextQuad(math.floor(self.frame / self.animation_speed))
             self.sb:set(id, quad,
                 (a.x-1)*self.tileset.tile_width,(a.y-1)*self.tileset.tile_height)
         end
