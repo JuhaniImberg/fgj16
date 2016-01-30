@@ -96,7 +96,7 @@ TileMap = Class{
     findPath = function(self, from, to)
         local queue = {from}
         local visited = {}
-        for i=1, #self.collisions do
+        for i=0, #self.collisions+1 do
             visited[i] = {}
         end
         local i=0
@@ -124,7 +124,7 @@ TileMap = Class{
                 table.insert(neighbors, {x=cur.x-1, y=cur.y, parent=i})
                 visited[cur.y][cur.x-1] = true
             end
-            if cur.x < #self.collisions[cur.y]  and not visited[cur.y][cur.x+1] and not self.collisions[cur.y+1][cur.x+1+1]  then
+            if cur.x < #self.collisions[1] and not visited[cur.y][cur.x+1] and not self.collisions[cur.y+1][cur.x+1+1]  then
                 table.insert(neighbors, {x=cur.x+1, y=cur.y, parent=i})
                 visited[cur.y][cur.x+1] = true
             end
