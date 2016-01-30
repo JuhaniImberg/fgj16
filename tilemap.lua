@@ -12,6 +12,7 @@ TileMap = Class{
         end
         self.sb = love.graphics.newSpriteBatch(tileset.image)
         self.ids = {}
+        self.animated = {}
         for y = 1, #map do
             col = map[y];
             self.ids[y] = {}
