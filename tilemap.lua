@@ -60,7 +60,7 @@ TileMap = Class{
                 ycol = true
             end
         end
-        if math.floor(epos2.x / self.tileset.tile_width)-1 >= #self.collisions or epos.x / self.tileset.tile_width <= 0 then
+        if math.floor(epos2.x / self.tileset.tile_width)-1 >= #self.collisions[0] or epos.x / self.tileset.tile_width <= 0 then
             xcol = true
         else
             if self.collisions[math.floor((epos.y)/self.tileset.tile_height)+1][math.floor((epos.x)/self.tileset.tile_width)+1]
