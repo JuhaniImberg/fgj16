@@ -123,12 +123,23 @@ function game:draw()
 end
 
 function game:joystickadded(joystick)
-    self.hero:setJoystick(joystick)
+    if not self.hero.joystick then
+        self.hero:setJoystick(joystick)
+    else
+        self.commander:setJoystick(joystick)
+    end
     -- self.commander:setJoystick(joystick)
 end
 
-function game:gamepadpressed(js, button)
-    print(button)
+function game:gamepadpressed(joystick, button)
+    if joystick == self.commander.joystick then
+        if button == "a" then
+            self:spawnUnit(self.commander.pos)
+        end
+        if button == "x" then
+            self:setUnitTarget(self.commander.pos)
+        end
+    end
 end
 
 function game:mousemoved(x, y)
