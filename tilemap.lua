@@ -25,7 +25,6 @@ TileMap = Class{
         end
     end,
     setTile = function(self, x, y, c)
-        print(x, y, c)
         self.map[y][x] = c
         local tile_info = self.tileset:getTileInfo(c)
         if tile_info:isAnimated() then
