@@ -65,6 +65,7 @@ function editor:keyreleased(key)
     end
     if key == "return" then
         self.commander.selected_tm = self.commander.selected_tm + 1
+        self.commander:updateSelectedTM()
     end
 
     if key == "left" then
@@ -108,6 +109,7 @@ function editor:mousepressed(x, y, button)
     end
     if button == 2 then
         self.commander.selected_tm = self.commander.selected_tm + 1
+        self.commander:updateSelectedTM()
     end
 end
 
