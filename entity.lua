@@ -7,7 +7,7 @@ Entity = Class{
         self.height = height or 24
         self.speed = speed or 100
         self.carrying = nil
-        self.radius = 36
+        self.radius = 8
         self.slowspeed = 50
         self.highspeed = self.speed
     end,
