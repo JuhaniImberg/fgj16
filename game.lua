@@ -14,12 +14,17 @@ Commander = require "commander"
 local game = {}
 
 function game:init()
-    map = {}
-    for line in io.lines("map.data") do
-        table.insert(map, line)
+    map0 = {}
+    for line in io.lines("map-layer-0.data") do
+        table.insert(map0, line)
+    end
+    map1 = {}
+    for line in io.lines("map-layer-1.data") do
+        table.insert(map1, line)
     end
 
-    self.tm = TM(tileset, map, 3)
+    self.tm0 = TM(tileset, map0, 3)
+    self.tm1 = TM(tileset, map1, 3)
     self.entities = {}
     self.items = {}
 
@@ -37,8 +42,8 @@ function game:init()
 end
 
 function game.addRandomUnit(self)
-    table.insert(self.entities, Unit(vector(math.random(0, 53) * 24,
-                                            math.random(0, 30) * 24)))
+    table.insert(self.entities, Unit(vector(math.random(1, 52) * 24,
+                                            math.random(1, 31) * 24)))
 end
 
 function game.addRandomItem(self)
@@ -50,18 +55,20 @@ function game.addRandomItem(self)
 end
 
 function game:update(dt)
-    self.tm:update(dt)
+    self.tm0:update(dt)
+    self.tm1:update(dt)
     for i, item in ipairs(self.items) do
         item:update(dt, self.entities)
     end
     self.commander:update(dt, self)
     for i, entity in ipairs(self.entities) do
-        entity:update(dt, helpers.bind(self.tm, 'collides'), self, helpers.bind(self.tm, 'findPath'))
+        entity:update(dt, helpers.bind(self.tm0, 'collides'), self, helpers.bind(self.tm0, 'findPath'))
     end
 end
 
 function game:draw()
-    self.tm:draw()
+    self.tm0:draw()
+    self.tm1:draw()
     for i, nitem in ipairs(self.items) do
         nitem:draw()
     end

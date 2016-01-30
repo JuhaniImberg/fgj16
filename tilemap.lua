@@ -127,7 +127,7 @@ TileMap = Class{
                 table.insert(neighbors, {x=cur.x, y=cur.y-1, parent=i})
                 visited[cur.y-1][cur.x] = true
             end
-            if cur.y < #self.collisions  and not visited[cur.y+1][cur.x]  and not self.collisions[cur.y+1+1][cur.x+1] then
+            if cur.y < #self.collisions-1  and not visited[cur.y+1][cur.x]  and not self.collisions[cur.y+1+1][cur.x+1] then
                 table.insert(neighbors, {x=cur.x, y=cur.y+1, parent=i})
                 visited[cur.y+1][cur.x] = true
             end
