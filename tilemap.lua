@@ -6,7 +6,7 @@ TileMap = Class{
         self.tileset = tileset
         self.animation_speed = 1/animation_speed
         self.map = {}
-        self.sb = love.graphics.newSpriteBatch(tileset.image)
+        self.sb = love.graphics.newSpriteBatch(tileset.image, #mapstr * #mapstr[1])
         self.ids = {}
         self.animated = {}
         self.frame = 1
@@ -31,8 +31,8 @@ TileMap = Class{
         love.graphics.draw(self.sb)
     end,
     update = function(self, dt)
+        self.frame = self.frame + dt
         for i=1, #self.animated do
-            self.frame = self.frame + dt
             local a = self.animated[i]
             local id = self.ids[a.y][a.x]
             local ti = self.tileset:getTileInfo(self.map[a.y][a.x])
