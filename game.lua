@@ -126,6 +126,10 @@ function game:joystickadded(joystick)
     -- self.commander:setJoystick(joystick)
 end
 
+function game:gamepadpressed(js, button)
+    print(button)
+end
+
 function game:mousemoved(x, y)
     self.commander.pos.x = x - 12
     self.commander.pos.y = y - 12
