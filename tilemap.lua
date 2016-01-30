@@ -28,7 +28,15 @@ TileMap = Class{
         self.map[y][x] = c
         local tile_info = self.tileset:getTileInfo(c)
         if tile_info:isAnimated() then
-            table.insert(self.animated, {x=x, y=y})
+            table.insert(self.animated, {x=x, y=y, s=math.random(100)})
+        else
+            for i=#self.animated, 1, -1 do
+                local a = self.animated[i]
+                if a.x == x and a.y == y then
+                    table.remove(self.animated, i)
+                    break
+                end
+            end
         end
         self.collisions[y][x] = tile_info.solid
         if self.ids[y][x] then
@@ -58,7 +66,7 @@ TileMap = Class{
             local a = self.animated[i]
             local id = self.ids[a.y][a.x]
             local ti = self.tileset:getTileInfo(self.map[a.y][a.x])
-            local quad = ti:getNextQuad(math.floor(self.frame / self.animation_speed))
+            local quad = ti:getNextQuad(math.floor((self.frame+a.s) / self.animation_speed))
             self.sb:set(id, quad,
                 (a.x-1)*self.tileset.tile_width,(a.y-1)*self.tileset.tile_height)
         end
