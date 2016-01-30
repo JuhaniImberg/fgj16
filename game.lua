@@ -14,7 +14,7 @@ function game:init()
             ".##########.",
             "..#......#..",
             "...######...",
-            "%..........?",
+            "%.....w....?",
             }
 
     self.tm = TM(tileset, map)
@@ -25,6 +25,7 @@ function game:init()
 end
 
 function game:update(dt)
+    self.tm:update()
     for i, entity in ipairs(self.entities) do
         entity:update(dt)
     end
