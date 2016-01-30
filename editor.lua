@@ -94,6 +94,9 @@ function editor:mousemoved(x, y)
     if love.mouse.isDown(1) then
         self.commander:place()
     end
+    if love.mouse.isDown(2) then
+        self.commander:erase()
+    end
 end
 
 function editor:wheelmoved(x,y)
@@ -108,6 +111,9 @@ function editor:mousepressed(x, y, button)
         self.commander:place()
     end
     if button == 2 then
+        self.commander:erase()
+    end
+    if button == 3 then
         self.commander.selected_tm = self.commander.selected_tm + 1
         self.commander:updateSelectedTM()
     end
