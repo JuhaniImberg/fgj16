@@ -39,6 +39,9 @@ function game:init()
     self.hero = Hero(vector(48, 48))
     self.commander = Commander(vector(48, 27 * 24))
     table.insert(self.entities, self.hero)
+
+    self.music = love.audio.newSource( "sound/game.ogg" )
+    love.audio.play(self.music)
 end
 
 function game.addRandomUnit(self)
