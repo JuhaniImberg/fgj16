@@ -120,7 +120,7 @@ TileMap = Class{
                 return path
             end
             local neighbors = {}
-            if cur.x ~= 1 and not visited[cur.y][cur.x-1] and not self.collisions[cur.y+1][cur.x-1+1] then
+            if cur.x ~= 0 and not visited[cur.y][cur.x-1] and not self.collisions[cur.y+1][cur.x-1+1] then
                 table.insert(neighbors, {x=cur.x-1, y=cur.y, parent=i})
                 visited[cur.y][cur.x-1] = true
             end
@@ -128,7 +128,7 @@ TileMap = Class{
                 table.insert(neighbors, {x=cur.x+1, y=cur.y, parent=i})
                 visited[cur.y][cur.x+1] = true
             end
-            if cur.y ~= 1 and not visited[cur.y-1][cur.x] and not self.collisions[cur.y-1+1][cur.x+1]  then
+            if cur.y ~= 0 and not visited[cur.y-1][cur.x] and not self.collisions[cur.y-1+1][cur.x+1]  then
                 table.insert(neighbors, {x=cur.x, y=cur.y-1, parent=i})
                 visited[cur.y-1][cur.x] = true
             end
