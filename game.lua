@@ -28,9 +28,7 @@ function game:init()
     self.entities = {}
     self.items = {}
 
-    for i=1, 6 do
-        self:addRandomItem()
-    end
+    self:genRandomItemList(8, 5)
 
     self.mtdoom =  MtDoom(vector(24, 24))
     self.hq = HQ(vector(24, 28 * 24))
@@ -55,12 +53,24 @@ function game:spawnUnit(target)
                                      target:clone()))
 end
 
-function game:addRandomItem()
-    local ntype = item.itemtypes[math.random(#item.itemtypes)]
-    local nitem = item.Item(vector(math.random(1, 51) * 24,
-                                   math.random(1, 29) * 24),
-                            ntype)
+function game:addItem(item_type, ritual)
+    local nitem = item.Item(item_type, ritual)
     table.insert(self.items, nitem)
+end
+
+function game:genRandomItemList(count, ritual_count)
+    local all = {}
+    local items = {}
+    for i=1, #item.itemtypes do
+        table.insert(all, item.itemtypes[i])
+    end
+    for i=1, count do
+        local index = math.random(1, #all)
+        self:addItem(all[index], i<=ritual_count)
+        table.remove(all, index)
+    end
+
+    return items
 end
 
 function game:update(dt)

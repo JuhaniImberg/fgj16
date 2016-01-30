@@ -1,14 +1,15 @@
 Class = require "hump.class"
 
 Item = Class{
-    init = function(self, pos, itype)
-        self.pos = pos
+    init = function(self, itype, ritual)
+        self.pos = itype.pos
         self.itype = itype
         self.width = width or 24
         self.height = height or 24
         self.being_carried = false
         self.destroyed = false
         self.captured = false
+        self.ritual_item = ritual
     end,
     middlepoint = function(self)
         return self.pos + vector(self.width / 2, self.height / 2)
@@ -36,9 +37,10 @@ Item = Class{
 }
 
 ItemType = Class{
-    init = function(self, name, image)
+    init = function(self, name, image, pos)
         self.name = name
         self.image = image
+        self.pos = pos
     end,
     draw = function(self, pos, width, height)
         love.graphics.draw(self.image, pos.x, pos.y)
@@ -46,21 +48,21 @@ ItemType = Class{
 }
 
 itemtypes = {
-    ItemType("Beehive", love.graphics.newImage("graphics/beehive.png")),
-    ItemType("Bucket", love.graphics.newImage("graphics/bucket.png")),
-    ItemType("Coin", love.graphics.newImage("graphics/coin.png")),
-    ItemType("Crown", love.graphics.newImage("graphics/crown.png")),
-    ItemType("Deadfish", love.graphics.newImage("graphics/deadfish.png")),
-    ItemType("Excalibur", love.graphics.newImage("graphics/enchantedsword.png")),
-    ItemType("Fang", love.graphics.newImage("graphics/fang.png")),
-    ItemType("Goat", love.graphics.newImage("graphics/goat.png")),
-    ItemType("Goblet", love.graphics.newImage("graphics/goblet.png")),
-    ItemType("Pearl", love.graphics.newImage("graphics/pearl.png")),
-    ItemType("PinkOrb", love.graphics.newImage("graphics/pinkorb.png")),
-    ItemType("Ruby", love.graphics.newImage("graphics/ruby.png")),
-    ItemType("Fiddle", love.graphics.newImage("graphics/scarecrow.png")),
-    ItemType("Shovel", love.graphics.newImage("graphics/shovel.png")),
-    ItemType("Tiara", love.graphics.newImage("graphics/tiara.png")),
+    ItemType("Beehive", love.graphics.newImage("graphics/beehive.png"), vector(1,1)),
+    ItemType("Bucket", love.graphics.newImage("graphics/bucket.png"), vector(1,1)),
+    ItemType("Coin", love.graphics.newImage("graphics/coin.png"), vector(1,1)),
+    ItemType("Crown", love.graphics.newImage("graphics/crown.png"), vector(1,1)),
+    ItemType("Deadfish", love.graphics.newImage("graphics/deadfish.png"), vector(1,1)),
+    ItemType("Excalibur", love.graphics.newImage("graphics/enchantedsword.png"), vector(1,1)),
+    ItemType("Fang", love.graphics.newImage("graphics/fang.png"), vector(1,1)),
+    ItemType("Goat", love.graphics.newImage("graphics/goat.png"), vector(1,1)),
+    ItemType("Goblet", love.graphics.newImage("graphics/goblet.png"), vector(1,1)),
+    ItemType("Pearl", love.graphics.newImage("graphics/pearl.png"), vector(1,1)),
+    ItemType("PinkOrb", love.graphics.newImage("graphics/pinkorb.png"), vector(1,1)),
+    ItemType("Ruby", love.graphics.newImage("graphics/ruby.png"), vector(1,1)),
+    ItemType("Fiddle", love.graphics.newImage("graphics/scarecrow.png"), vector(1,1)),
+    ItemType("Shovel", love.graphics.newImage("graphics/shovel.png"), vector(1,1)),
+    ItemType("Tiara", love.graphics.newImage("graphics/tiara.png"), vector(1,1)),
 }
 
 return {
