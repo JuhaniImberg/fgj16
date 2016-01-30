@@ -36,21 +36,31 @@ Item = Class{
 }
 
 ItemType = Class{
-    init = function(self, name, r, g, b)
+    init = function(self, name, image)
         self.name = name
-        self.r = r
-        self.g = g
-        self.b = b
+        self.image = image
     end,
     draw = function(self, pos, width, height)
-        love.graphics.setColor(self.r, self.g, self.b)
-        love.graphics.rectangle("fill", pos.x, pos.y, width, height)
+        love.graphics.draw(self.image, pos.x, pos.y)
     end
 }
 
 itemtypes = {
-    ItemType("testitem-01", 125, 125, 255),
-    ItemType("testitem-02", 255, 125, 125)
+    ItemType("Beehive", love.graphics.newImage("graphics/beehive.png")),
+    ItemType("Bucket", love.graphics.newImage("graphics/bucket.png")),
+    ItemType("Coin", love.graphics.newImage("graphics/coin.png")),
+    ItemType("Crown", love.graphics.newImage("graphics/crown.png")),
+    ItemType("Deadfish", love.graphics.newImage("graphics/deadfish.png")),
+    ItemType("Excalibur", love.graphics.newImage("graphics/enchantedsword.png")),
+    ItemType("Fang", love.graphics.newImage("graphics/fang.png")),
+    ItemType("Goat", love.graphics.newImage("graphics/goat.png")),
+    ItemType("Goblet", love.graphics.newImage("graphics/goblet.png")),
+    ItemType("Pearl", love.graphics.newImage("graphics/pearl.png")),
+    ItemType("PinkOrb", love.graphics.newImage("graphics/pinkorb.png")),
+    ItemType("Ruby", love.graphics.newImage("graphics/ruby.png")),
+    ItemType("Fiddle", love.graphics.newImage("graphics/scarecrow.png")),
+    ItemType("Shovel", love.graphics.newImage("graphics/shovel.png")),
+    ItemType("Tiara", love.graphics.newImage("graphics/tiara.png")),
 }
 
 return {
