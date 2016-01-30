@@ -40,6 +40,7 @@ function game:init()
     table.insert(self.entities, self.hero)
 
     self.music = love.audio.newSource( "sound/game.ogg" )
+    self.music:setLooping(true)
     love.audio.play(self.music)
 end
 

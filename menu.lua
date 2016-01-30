@@ -8,6 +8,7 @@ menu = {}
 function menu:init()
     self.joysticks = {}
     self.music = love.audio.newSource( "sound/menu.ogg" )
+    self.music:setLooping(true)
     love.audio.play(self.music)
 end
 
