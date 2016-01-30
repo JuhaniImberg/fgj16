@@ -3,11 +3,12 @@ Class = require "hump/class"
 ti = {}
 
 ti.TileInfo = Class{
-    init = function(self, char, x, y)
+    init = function(self, char, x, y, solid)
         self.char = char
         self.x = x
         self.y = y
         self.animated = false
+        self.solid = solid or false
     end
 }
 

@@ -5,7 +5,7 @@ Entity = require "entity"
 Hero = Class{
     __includes = Entity,
     init = function(self, pos)
-        Entity.init(self, pos)
+        Entity.init(self, pos, 16, 16)
         self.joystick = nil
     end,
     setJoystick = function(self, joystick)
