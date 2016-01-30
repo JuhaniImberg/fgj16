@@ -1,4 +1,5 @@
 Class = require "hump/class"
+vector = require "hump/vector"
 
 
 TileMap = Class{
@@ -46,23 +47,30 @@ TileMap = Class{
     end,
     collides = function(self, entity)
         local epos, epos2 = entity:boundingBox()
-        local yrange = {math.max(1, math.floor(epos.y / self.tileset.tile_height) - 1),
-                        math.min(#self.collisions, math.floor(epos2.y / self.tileset.tile_height) + 2)}
-        for y=yrange[1], yrange[2] do
-            local xrange = {math.max(1, math.floor(epos.x / self.tileset.tile_width) - 1),
-                            math.min(#self.collisions[y], math.floor(epos2.x / self.tileset.tile_width) + 2)}
-            for x=xrange[1], xrange[2] do
-                local solid = self.collisions[y][x]
-                if solid then
-                    local pos = vector((x-1) * self.tileset.tile_width, (y-1) * self.tileset.tile_height)
-                    local pos2 = pos + vector(self.tileset.tile_width, self.tileset.tile_height)
-                    if epos.x < pos2.x and epos2.x > pos.x and epos.y < pos2.y and epos2.y > pos.y then
-                        return true
-                    end
-                end
+
+        local ycol, xcol = false, false
+
+        if math.floor(epos2.y / self.tileset.tile_height)-1 >= #self.collisions or epos.y / self.tileset.tile_height <= 0 then
+            ycol = true
+        else
+            if self.collisions[math.floor(epos.y/self.tileset.tile_height)+1][math.floor((epos.x)/self.tileset.tile_width)+1]
+                or self.collisions[math.floor(epos.y/self.tileset.tile_height)+1][math.floor((epos2.x)/self.tileset.tile_width)+1]
+                or self.collisions[math.floor(epos2.y/self.tileset.tile_height)+1][math.floor((epos.x)/self.tileset.tile_width)+1]
+                or self.collisions[math.floor(epos2.y/self.tileset.tile_height)+1][math.floor((epos2.x)/self.tileset.tile_width)+1] then
+                ycol = true
             end
         end
-        return false
+        if math.floor(epos2.x / self.tileset.tile_width)-1 >= #self.collisions or epos.x / self.tileset.tile_width <= 0 then
+            xcol = true
+        else
+            if self.collisions[math.floor((epos.y)/self.tileset.tile_height)+1][math.floor((epos.x)/self.tileset.tile_width)+1]
+                or self.collisions[math.floor((epos.y)/self.tileset.tile_height)+1][math.floor((epos2.x)/self.tileset.tile_width)+1]
+                or self.collisions[math.floor((epos2.y)/self.tileset.tile_height)+1][math.floor((epos.x)/self.tileset.tile_width)+1]
+                or self.collisions[math.floor((epos2.y)/self.tileset.tile_height)+1][math.floor((epos2.x)/self.tileset.tile_width)+1] then
+                xcol = true
+            end
+        end
+        return xcol, ycol
     end
 }
 
