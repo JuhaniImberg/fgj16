@@ -63,6 +63,33 @@ function editor:keyreleased(key)
     if key == "space" then
         self:save()
     end
+    if key == "return" then
+        self.commander.selected_tm = self.commander.selected_tm + 1
+    end
+    if love.keyboard.isDown("lshift") then
+        key = key:upper()
+    end
+    for i, info in ipairs(self.commander.tm.tileset.tiles) do
+        if key == info.char then
+            self.commander.selected = i
+            self.commander:updateTileInfo()
+            return
+        end
+    end
+end
+function editor:mousemoved(x, y)
+    self.commander.pos.x = x - 12
+    self.commander.pos.y = y - 12
+end
+function editor:mousepressed(x, y, button)
+    self.commander.pos.x = x - 12
+    self.commander.pos.y = y - 12
+    if button == 1 then
+        self.commander:place()
+    end
+    if button == 2 then
+        self.commander.selected_tm = self.commander.selected_tm + 1
+    end
 end
 
 return editor

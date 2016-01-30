@@ -51,10 +51,13 @@ EditorCommander = Class{
         self:updateSelectedTM()
 
         if self.joystick:isGamepadDown("a") then
-            self.tm:setTile(math.floor(self.pos.x / 24 + 0.5) + 1,
-                            math.floor(self.pos.y / 24 + 0.5) + 1,
-                            self.tile_info.char)
+            self:place()
         end
+    end,
+    place = function(self)
+        self.tm:setTile(math.floor(self.pos.x / 24 + 0.5) + 1,
+                        math.floor(self.pos.y / 24 + 0.5) + 1,
+                        self.tile_info.char)
     end,
     draw = function(self)
         love.graphics.setColor(255, 255, 255)
