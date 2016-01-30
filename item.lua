@@ -19,7 +19,7 @@ Item = Class{
         end
         for i, entity in ipairs(entities) do
             local dist = self:middlepoint():dist(entity:middlepoint())
-            if dist < 8 and entity:pickItem(self) then
+            if dist < entity.radius and entity:pickItem(self) then
                 self.being_carried = true
                 return
             end
