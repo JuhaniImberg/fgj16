@@ -6,22 +6,39 @@ Unit = Class{
     __includes = Entity,
     init = function(self, pos)
         Entity.init(self, pos, 16, 16)
+        self.image = love.graphics.newImage("graphics/elf.png")
+        self.quad = love.graphics.newQuad(0, 0, 18, 18, self.image:getWidth(), self.image:getHeight())
         self.speed = 75
+        self.flipper = false
     end,
     update = function(self, dt, collfn, game, pathfn)
+        local time = love.timer.getTime()
+        local image_ind = (math.floor(3*time))%4
+        if image_ind == 3 then
+            image_ind = 1
+        end
+
+        self.quad:setViewport(image_ind * 18, 0, 18, 18)
         local trg = self:getPath(dt, game, pathfn)
         if trg ~= nil then
             self.dir =  trg*24 + vector(6, 0) - self.pos + vector(8,8)
             self.pos = self.pos + self.dir:normalized() * dt * self.speed
+            if self.dir.x > 0 then
+                self.flipped = true
+            else
+                self.flipped = false
+            end
         end
     end,
     draw = function(self)
-        if self.carrying then
-            love.graphics.setColor(0, 0, 200)
-        else
-            love.graphics.setColor(0, 0, 255)
-        end
-        love.graphics.rectangle("fill", self.pos.x, self.pos.y, self.width, self.height)
+        love.graphics.setColor(255, 255, 255, 255)
+        love.graphics.draw(self.image,
+                           self.quad,
+                           math.floor(self.pos.x + 0.5 - (self.flipped and -18 or 0)),
+                           math.floor(self.pos.y + 0.5),
+                           0,
+                           (self.flipped and -1 or 1),
+                           1)
     end,
     getPath = function(self, dt, game, pathfn)
         if self.trg ~= nil then
