@@ -28,8 +28,7 @@ function game:init()
     self.entities = {}
     self.items = {}
 
-    for i=1, 4 do
-        self:addRandomUnit()
+    for i=1, 6 do
         self:addRandomItem()
     end
 
@@ -46,12 +45,17 @@ function game:init()
     love.audio.play(self.music)
 end
 
-function game.addRandomUnit(self)
+function game:addRandomUnit()
     table.insert(self.entities, Unit(vector(math.random(1, 52) * 24,
                                             math.random(1, 31) * 24)))
 end
 
-function game.addRandomItem(self)
+function game:spawnUnit(target)
+    table.insert(self.entities, Unit(self.hq.pos:clone(),
+                                     target:clone()))
+end
+
+function game:addRandomItem()
     local ntype = item.itemtypes[math.random(#item.itemtypes)]
     local nitem = item.Item(vector(math.random(1, 51) * 24,
                                    math.random(1, 29) * 24),
@@ -86,6 +90,19 @@ end
 function game:joystickadded(joystick)
     self.hero:setJoystick(joystick)
     -- self.commander:setJoystick(joystick)
+end
+
+function game:mousemoved(x, y)
+    self.commander.pos.x = x - 12
+    self.commander.pos.y = y - 12
+end
+
+function game:mousepressed(x, y, button)
+    self.commander.pos.x = x - 12
+    self.commander.pos.y = y - 12
+    if button == 1 then
+        self:spawnUnit(self.commander.pos)
+    end
 end
 
 return game

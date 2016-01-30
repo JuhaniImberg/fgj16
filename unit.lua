@@ -4,12 +4,13 @@ Entity = require "entity"
 
 Unit = Class{
     __includes = Entity,
-    init = function(self, pos)
+    init = function(self, pos, target)
         Entity.init(self, pos, 16, 16)
         self.image = love.graphics.newImage("graphics/elf.png")
         self.quad = love.graphics.newQuad(0, 0, 18, 18, self.image:getWidth(), self.image:getHeight())
         self.speed = 75
         self.flipper = false
+        self.target = target
     end,
     update = function(self, dt, collfn, game, pathfn)
         local time = love.timer.getTime()
@@ -44,13 +45,16 @@ Unit = Class{
                            (self.flipped and -1 or 1),
                            1)
     end,
+    getTarget = function(self)
+        return self.carrying and game.hq:middlepoint():clone() or self.target:clone()
+    end,
     getPath = function(self, dt, game, pathfn)
         if self.trg ~= nil then
             if (self.trg*24-self.pos + vector(8,8)):len() > 8 then
                 return self.trg
             end
         end
-        local mid = self.carrying and game.hq:middlepoint():clone() or game.hero:middlepoint():clone()
+        local mid = self:getTarget()
         local pos = self.pos:clone() + vector(8,8)
         mid.x = math.floor(mid.x/24)
         mid.y = math.floor(mid.y/24)

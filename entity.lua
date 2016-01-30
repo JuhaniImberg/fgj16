@@ -7,7 +7,9 @@ Entity = Class{
         self.height = height or 24
         self.speed = speed or 100
         self.carrying = nil
-        self.radius = 8
+        self.radius = 36
+        self.slowspeed = 50
+        self.highspeed = self.speed
     end,
     middlepoint = function(self)
         return self.pos + vector(self.width / 2, self.height / 2)
@@ -24,7 +26,7 @@ Entity = Class{
             return false
         end
         self.carrying = item
-        self.speed = 50
+        self.speed = self.slowspeed
         return true
     end,
     dropItem = function(self)
@@ -36,7 +38,7 @@ Entity = Class{
                                    math.floor(mid.y / 24) * 24)
         self.carrying:dropped()
         self.carrying = nil
-        self.speed = 100
+        self.speed = self.highspeed
     end
 }
 

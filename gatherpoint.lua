@@ -7,7 +7,7 @@ GatherPoint = Class{
         self.destroy = false
         self.capture = false
         self.count = 0
-        self.radius = 32
+        self.radius = 48
     end,
     update = function(self, dt)
         if self.carrying then
