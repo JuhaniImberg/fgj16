@@ -18,8 +18,8 @@ CollidingEntity = Class{
                 self.pos.y = math.floor(self.pos.y/24)*24
                 if dir.y < 0 then
                     self.pos.y = self.pos.y + 24
-                else
-                    self.pos.y = self.pos.y + 7
+                elseif dir.y > 0 then
+                    self.pos.y = self.pos.y + (24-self.height) -1
                 end
             end
             self.pos.x = self.pos.x + (dir * step).x
@@ -28,8 +28,8 @@ CollidingEntity = Class{
                 self.pos.x = math.floor(self.pos.x/24)*24
                 if dir.x < 0 then
                     self.pos.x = self.pos.x + 24
-                else
-                    self.pos.x = self.pos.x + 7
+                elseif dir.x > 0 then
+                    self.pos.x = self.pos.x+ (24-self.width)-1
                 end
             end
         end
