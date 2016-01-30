@@ -62,7 +62,7 @@ function game:update(dt)
     end
     self.commander:update(dt, self)
     for i, entity in ipairs(self.entities) do
-        entity:update(dt, helpers.bind(self.tm0, 'collides'), self, helpers.bind(self.tm0, 'findPath'))
+        entity:update(dt, helpers.bind(self.tm1, 'collides'), self, helpers.bind(self.tm1, 'findPath'))
     end
 end
 

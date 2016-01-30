@@ -7,8 +7,8 @@ return TileSet("graphics/tileset.png", 24, 24,
                    -- j k l m n o p q r
                    -- s t u v w x y z 0
                    -- 1 2 3 4 5 6 7 8 9
-		   -- A B C D E F G H I
-		   -- J K L M N O P Q R
+        		   -- A B C D E F G H I
+        		   -- J K L M N O P Q R
 
                    ti.TileInfo("a", 0, 0),
                    ti.TileInfo("b", 1, 0),
