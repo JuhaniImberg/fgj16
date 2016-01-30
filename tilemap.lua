@@ -71,6 +71,57 @@ TileMap = Class{
             end
         end
         return xcol, ycol
+    end,
+    findPath = function(self, from, to)
+        local queue = {from}
+        local visited = {}
+        for i=1, #self.collisions do
+            visited[i] = {}
+        end
+        local i=0
+        while i ~= #queue do
+            i = i + 1
+            local cur = queue[i]
+            if (cur.x == to.x and cur.y == to.y) then
+                local path = {}
+                while cur.x ~= from.x or cur.y ~= from.y do
+                    table.insert(path, vector(cur.x, cur.y))
+                    cur = queue[cur.parent]
+                end
+                if #path == 0 then
+                    table.insert(path, vector(cur.x, cur.y))
+                end
+                for i=1, math.floor(#path / 2) do
+                    local tmp = path[i]
+                    path[i] = path[#path - i + 1]
+                    path[#path - i + 1] = tmp
+                end
+                return path
+            end
+            local neighbors = {}
+            if cur.x ~= 1 and not visited[cur.y][cur.x-1] and not self.collisions[cur.y+1][cur.x-1+1] then
+                table.insert(neighbors, {x=cur.x-1, y=cur.y, parent=i})
+                visited[cur.y][cur.x-1] = true
+            end
+            if cur.x < #self.collisions[cur.y]  and not visited[cur.y][cur.x+1] and not self.collisions[cur.y+1][cur.x+1+1]  then
+                table.insert(neighbors, {x=cur.x+1, y=cur.y, parent=i})
+                visited[cur.y][cur.x+1] = true
+            end
+            if cur.y ~= 1 and not visited[cur.y-1][cur.x] and not self.collisions[cur.y-1+1][cur.x+1]  then
+                table.insert(neighbors, {x=cur.x, y=cur.y-1, parent=i})
+                visited[cur.y-1][cur.x] = true
+            end
+            if cur.y < #self.collisions  and not visited[cur.y+1][cur.x]  and not self.collisions[cur.y+1+1][cur.x+1] then
+                table.insert(neighbors, {x=cur.x, y=cur.y+1, parent=i})
+                visited[cur.y+1][cur.x] = true
+            end
+            while #neighbors ~= 0 do
+                local index = math.random(#neighbors)
+                table.insert(queue, neighbors[index])
+                table.remove(neighbors, index)
+            end
+        end
+        return nil
     end
 }
 
