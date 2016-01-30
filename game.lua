@@ -44,7 +44,7 @@ function game:init()
     self.tm = TM(tileset, map, 3)
     self.entities = {}
 
-    self.hero = Hero(vector(0, 0))
+    self.hero = Hero(vector(48, 48))
     table.insert(self.entities, self.hero)
 end
 
