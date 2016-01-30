@@ -1,12 +1,12 @@
-local tileset = {}
+Class = require "hump/class"
 
-tileset.tile_size = {w=24, h=24}
-tileset.tiles = {
-    {c=".", x=0, y=0},
-    {c="#", x=1, y=0},
-    {c="%", x=0, y=1},
-    {c="?", x=1, y=1}
+TileSet = Class{
+    init = function(self, image_path, tile_width, tile_height, tile_infos)
+        self.image =  love.graphics.newImage(image_path)
+        self.tile_width = tile_width
+        self.tile_height = tile_height
+        self.tiles = tile_infos
+    end
 }
-tileset.image = love.graphics.newImage("tileset.png")
 
-return tileset
+return TileSet;
