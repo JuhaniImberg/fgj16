@@ -1,5 +1,6 @@
 vector = require "hump.vector"
 
+helpers = require "helpers"
 tileset = require "defaulttileset"
 TM = require "tilemap"
 Hero = require "hero"
@@ -50,7 +51,7 @@ end
 function game:update(dt)
     self.tm:update(dt)
     for i, entity in ipairs(self.entities) do
-        entity:update(dt)
+        entity:update(dt, helpers.bind(self.tm, 'collides'))
     end
 end
 

@@ -11,7 +11,7 @@ Hero = Class{
     setJoystick = function(self, joystick)
         self.joystick = joystick
     end,
-    update = function(self, dt)
+    update = function(self, dt, collfn)
         if not self.joystick then
             return
         end
@@ -19,7 +19,11 @@ Hero = Class{
         axis = vector(x_axis, y_axis)
 
         if axis:len() > 0.1 then
+            local oldpos = self.pos:clone()
             self.pos = self.pos + (axis * dt * self.speed)
+            if collfn(self) then
+                self.pos = oldpos
+            end
         end
 
     end,
