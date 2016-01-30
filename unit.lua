@@ -4,6 +4,7 @@ Entity = require "entity"
 
 Unit = Class{
     __includes = Entity,
+    unit = true,
     init = function(self, pos, target)
         Entity.init(self, pos, 16, 16)
         self.image = love.graphics.newImage("graphics/elf.png")
@@ -33,6 +34,7 @@ Unit = Class{
 
         if self.carrying and self:middlepoint():dist(game.hq:middlepoint()) < 16 then
             self:dropItem()
+            game:rekt(self)
         end
     end,
     draw = function(self)
@@ -46,7 +48,7 @@ Unit = Class{
                            1)
     end,
     getTarget = function(self)
-        return self.carrying and game.hq:middlepoint():clone() or self.target:clone()
+        return self.carrying and game.hq.pos:clone() or self.target:clone()
     end,
     getPath = function(self, dt, game, pathfn)
         if self.trg ~= nil then
@@ -54,7 +56,7 @@ Unit = Class{
                 return self.trg
             end
         end
-        local mid = self:getTarget()
+        local mid = self:getTarget() + vector(12, 12)
         local pos = self.pos:clone() + vector(8,8)
         mid.x = math.floor(mid.x/24)
         mid.y = math.floor(mid.y/24)

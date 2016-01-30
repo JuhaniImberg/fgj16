@@ -58,6 +58,30 @@ function game:addItem(item_type, ritual)
     table.insert(self.items, nitem)
 end
 
+function game:rekt(entity)
+    for i=#self.entities, 1, -1 do
+        if self.entities[i] == entity then
+            table.remove(self.entities, i)
+        end
+    end
+end
+
+function game:setUnitTarget(target)
+    for i=#self.entities, 1, -1 do
+        if self.entities[i].unit then
+            self.entities[i].target = target:clone()
+        end
+    end
+end
+
+function game:addRandomItem()
+    local ntype = item.itemtypes[math.random(#item.itemtypes)]
+    local nitem = item.Item(vector(math.random(1, 51) * 24,
+                                   math.random(1, 29) * 24),
+                            ntype)
+    table.insert(self.items, nitem)
+end
+
 function game:genRandomItemList(count, ritual_count)
     local all = {}
     local items = {}
@@ -112,6 +136,9 @@ function game:mousepressed(x, y, button)
     self.commander.pos.y = y - 12
     if button == 1 then
         self:spawnUnit(self.commander.pos)
+    end
+    if button == 2 then
+        self:setUnitTarget(self.commander.pos)
     end
 end
 
