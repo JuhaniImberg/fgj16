@@ -66,9 +66,18 @@ function editor:keyreleased(key)
     if key == "return" then
         self.commander.selected_tm = self.commander.selected_tm + 1
     end
+
+    if key == "left" then
+        self.layers[1].visible = not self.layers[1].visible
+    end
+    if key == "right" then
+        self.layers[2].visible = not self.layers[2].visible
+    end
+
     if love.keyboard.isDown("lshift") then
         key = key:upper()
     end
+
     for i, info in ipairs(self.commander.tm.tileset.tiles) do
         if key == info.char then
             self.commander.selected = i
@@ -77,6 +86,7 @@ function editor:keyreleased(key)
         end
     end
 end
+
 function editor:mousemoved(x, y)
     self.commander.pos.x = x - 12
     self.commander.pos.y = y - 12
@@ -84,10 +94,12 @@ function editor:mousemoved(x, y)
         self.commander:place()
     end
 end
+
 function editor:wheelmoved(x,y)
     self.commander.selected = self.commander.selected+y
     self.commander:updateTileInfo()
 end
+
 function editor:mousepressed(x, y, button)
     self.commander.pos.x = x - 12
     self.commander.pos.y = y - 12

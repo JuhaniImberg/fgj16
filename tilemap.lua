@@ -12,6 +12,7 @@ TileMap = Class{
         self.animated = {}
         self.collisions = {}
         self.frame = 1
+        self.visible = true
         for y = 1, #mapstr do
             col = mapstr[y];
             self.map[y] = {}
@@ -43,6 +44,9 @@ TileMap = Class{
         end
     end,
     draw = function(self)
+        if not self.visible then
+            return
+        end
         love.graphics.setColor(255, 255, 255)
         love.graphics.draw(self.sb)
     end,
