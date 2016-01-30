@@ -72,16 +72,18 @@ EditorCommander = Class{
         love.graphics.draw(self.image, self.quad, rpos.x, rpos.y)
 
         if 1 == math.floor(1 + (self.selected_tm + 0.5) % #self.tms) then
-            love.graphics.setColor(255, 0, 0)
+            love.graphics.setColor(127, 0, 0)
         else
             love.graphics.setColor(0, 0, 255)
         end
 
-        love.graphics.line(rpos.x, rpos.y,
-                           rpos.x + self.width, rpos.y,
-                           rpos.x + self.width, rpos.y + self.height,
+        love.graphics.setLineWidth(1)
+        love.graphics.setLineStyle("rough")
+        love.graphics.line(rpos.x, rpos.y-1,
+                           rpos.x + self.width+1, rpos.y-1,
+                           rpos.x + self.width+1, rpos.y + self.height,
                            rpos.x, rpos.y + self.height,
-                           rpos.x, rpos.y)
+                           rpos.x, rpos.y-1)
     end
 }
 
