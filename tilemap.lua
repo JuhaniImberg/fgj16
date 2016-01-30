@@ -23,6 +23,7 @@ TileMap = Class{
         end
     end,
     draw = function(self)
+        love.graphics.setColor(255, 255, 255)
         love.graphics.draw(self.sb)
     end,
     setTile = function(self, x, y, c)
