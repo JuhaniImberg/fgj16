@@ -8,8 +8,8 @@ MtDoom = Class{
         self.destroys = true
     end,
     draw = function(self)
-        love.graphics.setColor(255, 0, 0)
-        love.graphics.rectangle("fill", self.pos.x, self.pos.y, self.width, self.height)
+        -- love.graphics.setColor(255, 0, 0)
+        -- love.graphics.rectangle("fill", self.pos.x, self.pos.y, self.width, self.height)
         GatherPoint.draw(self)
     end
 }
