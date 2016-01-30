@@ -59,6 +59,11 @@ EditorCommander = Class{
                         math.floor(self.pos.y / 24 + 0.5) + 1,
                         self.tile_info.char)
     end,
+    erase = function(self)
+        self.tile_info = self.tm.tileset.tiles[43]
+        self:place()
+        self:updateTileInfo()
+    end,
     draw = function(self)
         love.graphics.setColor(255, 255, 255)
         local rpos = self.pos:clone()
