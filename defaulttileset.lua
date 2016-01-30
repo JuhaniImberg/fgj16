@@ -7,6 +7,8 @@ return TileSet("graphics/tileset.png", 24, 24,
                    -- j k l m n o p q r
                    -- s t u v w x y z 0
                    -- 1 2 3 4 5 6 7 8 9
+		   -- A B C D E F G H I
+		   -- J K L M N O P Q R
 
                    ti.TileInfo("a", 0, 0),
                    ti.TileInfo("b", 1, 0),
@@ -18,11 +20,11 @@ return TileSet("graphics/tileset.png", 24, 24,
                    ti.TileInfo("h", 7, 0),
                    ti.TileInfo("i", 8, 0),
 
-                   ti.TileInfo("j", 0, 1),
-                   ti.TileInfo("k", 1, 1),
-                   ti.TileInfo("l", 2, 1),
-                   ti.TileInfo("m", 3, 1),
-                   ti.TileInfo("n", 4, 1),
+                   ti.TileInfo("j", 0, 1, true),
+                   ti.TileInfo("k", 1, 1, true),
+                   ti.TileInfo("l", 2, 1, true),
+                   ti.TileInfo("m", 3, 1, true),
+                   ti.TileInfo("n", 4, 1, true),
                    ti.TileInfo("o", 5, 1),
                    ti.TileInfo("p", 6, 1),
                    ti.TileInfo("q", 7, 1),
@@ -40,18 +42,13 @@ return TileSet("graphics/tileset.png", 24, 24,
 
                    ti.TileInfo("1", 0, 3),
                    ti.TileInfo("2", 1, 3),
-                   ti.TileInfo("3", 2, 3),
-                   ti.TileInfo("4", 3, 3),
-                   ti.TileInfo("5", 4, 3),
-                   ti.TileInfo("6", 5, 3),
-                   ti.TileInfo("7", 6, 3),
-                   ti.TileInfo("8", 7, 3),
-                   ti.TileInfo("9", 8, 3),
-
-                   -- a	b c d e	f g h i
-                   -- j k l m n o p q r
-                   -- s t u v w x y z 0
-                   -- 1 2 3 4 5 6 7 8 9
+                   ti.TileInfo("3", 2, 3, true),
+                   ti.TileInfo("4", 3, 3, true),
+                   ti.TileInfo("5", 4, 3, true),
+                   ti.TileInfo("6", 5, 3, true),
+                   ti.TileInfo("7", 6, 3, true),
+                   ti.TileInfo("8", 7, 3, true),
+                   ti.TileInfo("9", 8, 3, true),
 
                    ti.TileInfo("A", 0, 4),
                    ti.TileInfo("B", 1, 4),
@@ -60,7 +57,17 @@ return TileSet("graphics/tileset.png", 24, 24,
                    ti.TileInfo("E", 4, 4),
                    ti.TileInfo("F", 5, 4),
                    ti.TileInfo("G", 6, 4),
-                   ti.TileInfo("H", 7, 4),
-                   ti.TileInfo("I", 8, 4)
+                   ti.TileInfo("H", 7, 4, true),
+                   ti.TileInfo("I", 8, 4, true),
+
+		   ti.TileInfo("J", 0, 5, true),
+                   ti.TileInfo("K", 1, 5, true),
+                   ti.TileInfo("L", 2, 5, true),
+                   ti.TileInfo("M", 3, 5, true),
+                   ti.TileInfo("N", 4, 5),
+                   ti.TileInfo("O", 5, 5),
+                   ti.TileInfo("P", 6, 5),
+                   ti.TileInfo("Q", 7, 5),
+                   ti.TileInfo("R", 8, 5)
                }
 )
