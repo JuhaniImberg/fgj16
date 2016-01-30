@@ -71,6 +71,7 @@ return TileSet("graphics/tileset.png", 24, 24,
                    ti.TileInfo("R", 8, 5, true),
 
 									 ti.TileInfo("S", 0, 6),
-                   ti.TileInfo("T", 7, 5, true)
+                   ti.TileInfo("T", 1, 6, true),
+                   ti.TileInfo("T", 2, 6, true)
                }
 )
