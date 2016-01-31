@@ -4,7 +4,7 @@ local mainCanvas
 local bgc
 local fgc
 local uc
-local fading = 255
+pp.fading = 255
 
 local fg_shadow_shader, dark_corner_shader
 
@@ -38,7 +38,7 @@ function load_shaders()
 
             float f = 1;//0.5+clamp(clamp(texture_coords.x*6,0,5)*clamp(texture_coords.y*6,0,5),0,1)*0.5;
 
-            return f*texcolor;
+            return f*color*texcolor;
         }
     ]]
 
@@ -61,6 +61,7 @@ function pp:init()
     fgc:setFilter("nearest","nearest")
     uc = love.graphics.newCanvas(24*53,720)
     uc:setFilter("nearest","nearest")
+    pp.fading = 255
     load_shaders()
 end
 
@@ -78,10 +79,6 @@ end
 
 function pp:getUnitCanvas()
     return uc
-end
-
-function pp:setFading(value)
-    fading = value
 end
 
 function pp:draw()
@@ -107,7 +104,7 @@ function pp:draw()
         scale = vscale
     end
     love.graphics.setCanvas()
-        love.graphics.setColor(fading, fading, fading)
+    love.graphics.setColor(pp.fading, pp.fading, pp.fading)
 
     love.graphics.setShader(dark_corner_shader)
     love.graphics.draw(mainCanvas, 0, 0, 0, scale, scale, 0 ,0)

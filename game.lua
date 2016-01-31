@@ -11,6 +11,7 @@ HQ = require "hq"
 Commander = require "commander"
 pp = require "postprocessing"
 meter = require "meter"
+endstate = require "endstate"
 
 local game = {}
 
@@ -148,6 +149,21 @@ function game:update(dt)
 
     self.tm0:update(dt)
     self.tm1:update(dt)
+
+    if self.gameOver then
+        pp.fading = pp.fading - dt*255
+        if pp.fading <= 0 then
+            Gamestate.switch(endstate)
+        end
+        return
+    end
+
+    if self.hero.hp <= 0 then
+        self.gameOver = true
+        endstate.message = "The hero died!"
+        return
+    end
+
     for i, item in ipairs(self.items) do
         item:update(dt, self.entities)
     end
