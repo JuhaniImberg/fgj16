@@ -1,6 +1,7 @@
 vector = require "hump.vector"
 
 Entity = require "entity"
+Projectile = require "projectile"
 
 Unit = Class{
     __includes = Entity,
@@ -39,8 +40,11 @@ Unit = Class{
             game:rekt(self)
         end
 
-        if self:middlepoint():dist(game.hero:middlepoint()) < 16 then
-            game.hero:takeDamage()
+        if self:middlepoint():dist(game.hero:middlepoint()) < 48 and self.last_fire + self.fire_cd < love.timer.getTime() then
+            game:fire(Projectile(self:middlepoint(),
+                                 (game.hero:middlepoint() - self:middlepoint()):normalized(),
+                                 "hero"))
+            self.last_fire = love.timer.getTime()
         end
     end,
     draw = function(self)

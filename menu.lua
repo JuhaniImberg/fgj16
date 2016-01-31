@@ -46,7 +46,7 @@ function menu:draw()
 
     local joysticks = love.joystick.getJoysticks()
     for i, joystick in ipairs(joysticks) do
-        love.graphics.print("(" .. i .. ") " .. joystick:getName() .. " as " .. self.roles[i], width + 40, self.font_size + i * self.font_size)
+        love.graphics.print(i .. ": " .. joystick:getName() .. " as " .. self.roles[i], width + 40, self.font_size + i * self.font_size)
     end
 end
 
