@@ -22,7 +22,7 @@ Unit = Class{
         end
 
         self.quad:setViewport(image_ind * 18, 0, 18, 18)
-        local trg = self:getPath(dt, game, pathfn)
+        local trg = self:getPath(pathfn)
         if trg ~= nil then
             self.dir =  trg*24 - vector((24-self.width)/2, (24-self.height)/2) - self.pos + vector(8,8)
             self.pos = self.pos + self.dir:normalized() * dt * self.speed
@@ -52,10 +52,21 @@ Unit = Class{
                            (self.flipped and -1 or 1),
                            1)
     end,
+    setTarget = function(self, ntarget, pathfn)
+        local old = self.target:clone()
+        local otrg = self.trg
+        self.trg = nil
+        self.target = ntarget
+        if self:getPath(pathfn) == nil then
+            self.target = old
+            self.trg = otrg
+            self:getPath(pathfn)
+        end
+    end,
     getTarget = function(self)
         return self.carrying and game.hq.pos:clone() or self.target:clone()
     end,
-    getPath = function(self, dt, game, pathfn)
+    getPath = function(self, pathfn)
         if self.trg ~= nil then
             if (self.trg*24-self.pos + vector(8,8)):len() > 8 then
                 return self.trg

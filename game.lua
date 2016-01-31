@@ -70,7 +70,8 @@ end
 function game:setUnitTarget(target)
     for i=#self.entities, 1, -1 do
         if self.entities[i].unit then
-            self.entities[i].target = target:clone()
+            self.entities[i]:setTarget(target:clone(),
+                                       helpers.bind(self.tm1, 'findPath'))
         end
     end
 end
