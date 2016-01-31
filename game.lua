@@ -84,10 +84,15 @@ function game:spawnUnit(target)
     if self.pool_size == 0 or self.pool_onmap >= self.pool_maxonmap then
         return
     end
+    local unit = Unit(self.hq.pos:clone(), target:clone())
+
+    if unit:getPath(helpers.bind(self.tm1, 'findPath')) == nil then
+        return
+    end
+
     self.pool_size = self.pool_size - 1
     self.pool_onmap = self.pool_onmap + 1
-    table.insert(self.entities, Unit(self.hq.pos:clone(),
-                                     target:clone()))
+    table.insert(self.entities, unit)
 end
 
 function game:addItem(item_type, ritual)
