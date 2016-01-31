@@ -23,7 +23,7 @@ function game:init()
         table.insert(map1, line)
     end
 
-    self.tm0 = TM(tileset, map0, 3)
+    self.tm0 = TM(tileset, map0, 1.5)
     self.tm1 = TM(tileset, map1, 1.5)
     self.entities = {}
     self.projectiles = {}
