@@ -13,15 +13,25 @@ Hero = Class{
         self.joystick = nil
         self.flipped = false
         self.image_range = {1, 5}
+        self.maxhp = self.hp
+        self.last_heal = 0
+        self.heal_cd = 10
     end,
     setJoystick = function(self, joystick)
         self.joystick = joystick
     end,
     update = function(self, dt, collfn, game)
-        self:checkRekt(game)
+        if self:checkRekt(game) then
+            return
+        end
         local time = love.timer.getTime()
         local image_ind = (math.floor(4*time)) % (self.image_range[2] - self.image_range[1]) + self.image_range[1]
         self.quad:setViewport(image_ind * 18, 0, 18, 18)
+
+        if self.hp < self.maxhp and self.last_heal + self.heal_cd < love.timer.getTime() then
+            self.hp = self.hp + 1
+            self.last_heal = love.timer.getTime()
+        end
 
         if not self.joystick then
             return

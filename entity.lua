@@ -37,7 +37,9 @@ Entity = Class{
         if self.hp <= 0 then
             self:dropItem()
             game:rekt(self)
+            return true
         end
+        return false
     end,
     middlepoint = function(self)
         return self.pos + vector(self.width / 2, self.height / 2)
