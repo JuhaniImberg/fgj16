@@ -66,7 +66,7 @@ function game:enter()
     self.ritual_items = 6
 
     self.gameOver = false
-    pp.fading = 255
+    pp.fading = 0
 
     self.win_time = love.timer.getTime() + 180
 
@@ -168,6 +168,10 @@ function game:update(dt)
             Gamestate.switch(endstate)
         end
         return
+    else
+        if pp.fading < 255 then
+            pp.fading = pp.fading + dt*255
+        end
     end
 
     if self.hero.hp <= 0 or self.hq.ritual_items >= self.ritual_items_needed then

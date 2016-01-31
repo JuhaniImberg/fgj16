@@ -55,15 +55,15 @@ function menu:draw()
 
         love.graphics.print("Credits", 20, 400)
         love.graphics.print("Juhani Imberg", 40, 400+self.font_size)
-        love.graphics.print("Coding", 300, 400+self.font_size)
+        love.graphics.print("Code", 300, 400+self.font_size)
         love.graphics.print("Nicklas Ahlskog", 40, 400+2*self.font_size)
-        love.graphics.print("Coding", 300, 400+2*self.font_size)
+        love.graphics.print("Code", 300, 400+2*self.font_size)
         love.graphics.print("Esa Niemi", 40, 400+3*self.font_size)
         love.graphics.print("Graphics", 300, 400+3*self.font_size)
         love.graphics.print("Jaakko Hannikainen", 40, 400+4*self.font_size)
         love.graphics.print("Sounds", 300, 400+4*self.font_size)
         love.graphics.print("Allan Palmu", 40, 400+5*self.font_size)
-        love.graphics.print("Lead Designer", 300, 400+5*self.font_size)
+        love.graphics.print("Design", 300, 400+5*self.font_size)
 end
 
 function menu:up()
