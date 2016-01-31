@@ -14,3 +14,9 @@ The Elders have decided to finally migrate our people from this dying world. To 
 
 # pre-game
 Press SPACE when both players are ready.
+
+# hero-end
+The ritual failed! The people of this world permanently lost their means of finding a new homeworld as their home continues to crumble and surrender to the toxic lava.
+
+# commander-end
+The ritual succeeded! Our people has now been teleported to a new world where they may continue living in peace.
