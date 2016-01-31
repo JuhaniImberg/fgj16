@@ -186,7 +186,7 @@ function game:update(dt)
         return
     end
 
-    
+
     for i, item in ipairs(self.items) do
         item:update(dt, self.entities)
     end
@@ -229,6 +229,11 @@ function game:draw()
     love.graphics.rectangle("fill", (width / 2) - 40, 0, 80, 32)
     love.graphics.setColor(255, 255, 255, 255)
     love.graphics.printf(math.floor(self.win_time - love.timer.getTime()), 0, -8, width, "center")
+
+    love.graphics.setColor(0, 0, 0, 120)
+    love.graphics.rectangle("fill", width - 72, 32, 72, 32)
+    love.graphics.setColor(255, 255, 255, 255)
+    love.graphics.printf(self.pool_onmap .. "/" .. self.pool_maxonmap, width - 72, 32 - 8, 72, "center")
 
     self.commander:draw()
 
