@@ -61,7 +61,7 @@ itemtypes = {
     ItemType("Pearl", love.graphics.newImage("graphics/pearl.png"), vector(28,15)),
     ItemType("Ruby", love.graphics.newImage("graphics/ruby.png"), vector(51,12)),
     ItemType("Fiddle", love.graphics.newImage("graphics/scarecrow.png"), vector(23,12)),
-    ItemType("Shovel", love.graphics.newImage("graphics/shovel.png"), vector(32,2)),
+    ItemType("Shovel", love.graphics.newImage("graphics/shovel.png"), vector(33,2)),
     ItemType("Tiara", love.graphics.newImage("graphics/tiara.png"), vector(47,5)),
 }
 
