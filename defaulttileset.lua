@@ -84,6 +84,23 @@ return TileSet("graphics/tileset.png", 24, 24,
 		   ti.TileInfo("#", 0, 7),
 		   ti.TileInfo("¤", 1, 7),
 		   ti.TileInfo("%", 2, 7),
-		   ti.TileInfo("&", 3, 7)
+		   ti.TileInfo("&", 3, 7),
+		   ti.TileInfo("/", 4, 7),
+		   ti.TileInfo("(", 5, 7),
+		   ti.TileInfo(")", 6, 7),
+		   ti.TileInfo("=", 7, 7),
+		   ti.TileInfo("?", 8, 7),
+
+
+		   ti.TileInfo("@", 0, 8),
+		   ti.TileInfo("£", 1, 8),
+		   ti.TileInfo("$", 2, 8),
+		   ti.TileInfo("{", 3, 8),
+		   ti.TileInfo("[", 4, 8),
+		   ti.TileInfo("]", 5, 8),
+		   ti.TileInfo("}", 6, 8),
+		   ti.TileInfo("~", 7, 8),
+		   ti.TileInfo("*", 8, 8),
+
                }
 )
