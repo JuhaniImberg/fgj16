@@ -42,7 +42,7 @@ return TileSet("graphics/tileset.png", 24, 24,
                    ti.TileInfo("0", 8, 2),
 
                    ti.TileInfo("1", 0, 3),
-                   ti.TileInfo("2", 1, 3),
+                   ti.AnimatedTileInfo("2", {vector(1, 3),vector(0, 7),vector(1, 7),vector(1, 3),vector(2, 7),vector(3, 7)}),
                    ti.TileInfo("3", 2, 3, true),
                    ti.TileInfo("4", 3, 3, true),
                    ti.TileInfo("5", 4, 3, true),
