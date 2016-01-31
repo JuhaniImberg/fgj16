@@ -5,7 +5,7 @@ local bgc
 local fgc
 local uc
 
-local fg_shadow_shader
+local fg_shadow_shader, dark_corner_shader
 
 function load_shaders()
     local pixelcode = [[
@@ -25,6 +25,21 @@ function load_shaders()
             return vec4(0.3,0.3,0.3,v);
         }
     ]]
+    local pixelcode2 = [[
+        extern vec3 metas[4];
+
+        vec4 effect( vec4 color, Image texture, vec2 texture_coords, vec2 screen_coords )
+        {
+
+            vec2 off = vec2(0.002, -0.003);
+
+            vec4 texcolor = Texel(texture, texture_coords);
+
+            float f = 1;//0.5+clamp(clamp(texture_coords.x*6,0,5)*clamp(texture_coords.y*6,0,5),0,1)*0.5;
+
+            return f*texcolor;
+        }
+    ]]
 
     local vertexcode = [[
         vec4 position( mat4 transform_projection, vec4 vertex_position )
@@ -34,6 +49,7 @@ function load_shaders()
     ]]
 
     fg_shadow_shader = love.graphics.newShader(pixelcode, vertexcode)
+    dark_corner_shader = love.graphics.newShader(pixelcode2, vertexcode)
 end
 
 function pp:init()
@@ -65,7 +81,7 @@ end
 
 function pp:draw()
     love.graphics.setColor(255, 255, 255)
-    
+
     love.graphics.setCanvas(mainCanvas)
     love.graphics.draw(bgc)
     love.graphics.setShader(fg_shadow_shader)
@@ -86,7 +102,11 @@ function pp:draw()
         scale = vscale
     end
     love.graphics.setCanvas()
+        love.graphics.setColor(255, 255, 255)
+
+    love.graphics.setShader(dark_corner_shader)
     love.graphics.draw(mainCanvas, 0, 0, 0, scale, scale, 0 ,0)
+    love.graphics.setShader()
 end
 
 return pp
