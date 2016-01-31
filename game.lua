@@ -155,6 +155,7 @@ function game:update(dt)
     if self.gameOver then
         pp.fading = pp.fading - dt*255
         if pp.fading <= 0 then
+            love.audio.stop(self.music)
             Gamestate.switch(endstate)
         end
         return
