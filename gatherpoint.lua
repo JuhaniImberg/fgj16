@@ -8,6 +8,8 @@ GatherPoint = Class{
         self.capture = false
         self.count = 0
         self.radius = 48
+        self.items = {}
+        self.ritual_items = 0
     end,
     update = function(self, dt)
         if self.carrying then
@@ -16,6 +18,10 @@ GatherPoint = Class{
             end
             if self.capture then
                 self.carrying.captured = true
+            end
+            table.insert(self.items, self.carrying)
+            if self.carrying.ritual_item then
+                self.ritual_items = self.ritual_items + 1
             end
             self.carrying = nil
             self.count = self.count + 1

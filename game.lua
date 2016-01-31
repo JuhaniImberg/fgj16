@@ -35,7 +35,7 @@ function game:enter()
     self.projectiles = {}
     self.items = {}
 
-    self:genRandomItemList(8, 5)
+    self:genRandomItemList(8, 6)
 
     self.mtdoom =  MtDoom(vector(24 * 48, 24 * 26))
     self.hq = HQ(vector(24 * 3, 24 * 26))
@@ -61,6 +61,8 @@ function game:enter()
     self.pool_onmap = 0
     self.last_pool = 0
     self.pool_cd = 10
+    self.ritual_items_needed = 4
+    self.ritual_items = 6
 
     self.gameOver = false
     pp.fading = 255
@@ -167,7 +169,7 @@ function game:update(dt)
         return
     end
 
-    if self.hero.hp <= 0 then
+    if self.hero.hp <= 0 or self.hq.ritual_items >= self.ritual_items_needed then
         self.gameOver = true
         endstate.title = "The ritual succeeded!"
     endstate.image =  love.graphics.newImage("graphics/endscreen.png")
@@ -175,7 +177,7 @@ function game:update(dt)
         return
     end
 
-    if self.win_time <= love.timer.getTime() then
+    if self.win_time <= love.timer.getTime() or self.mtdoom.ritual_items > self.ritual_items - self.ritual_items_needed then
         self.gameOver = true
         endstate.title = "The ritual failed!"
     endstate.image =  love.graphics.newImage("graphics/heroendscreen.png")
@@ -183,6 +185,7 @@ function game:update(dt)
         return
     end
 
+    
     for i, item in ipairs(self.items) do
         item:update(dt, self.entities)
     end
