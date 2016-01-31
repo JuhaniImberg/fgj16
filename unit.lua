@@ -43,7 +43,8 @@ Unit = Class{
         if self:middlepoint():dist(game.hero:middlepoint()) < 48 and self.last_fire + self.fire_cd < love.timer.getTime() then
             game:fire(Projectile(self:middlepoint(),
                                  (game.hero:middlepoint() - self:middlepoint()):normalized(),
-                                 "hero"))
+                                 "hero",
+                                 0.125))
             self.last_fire = love.timer.getTime()
         end
     end,
