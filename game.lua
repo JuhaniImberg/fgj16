@@ -219,10 +219,11 @@ function game:draw()
     love.graphics.setColor(255, 255, 255, 255)
     love.graphics.printf(math.floor(self.win_time - love.timer.getTime()), 0, -8, width, "center")
 
+    self.commander:draw()
+
     love.graphics.setCanvas()
     love.graphics.clear()
     pp.draw()
-    self.commander:draw()
 end
 
 function game:joystickadded(joystick)

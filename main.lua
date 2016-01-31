@@ -8,3 +8,10 @@ function love.load()
     Gamestate.registerEvents()
     Gamestate.switch(menu)
 end
+
+
+function love.keyreleased(key)
+    if key == "f11" then
+        love.window.setFullscreen(not love.window.getFullscreen())
+    end
+end
