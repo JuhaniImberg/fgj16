@@ -3,20 +3,25 @@ The following is the background story for the mighty Hero of this world. The Com
 
 # hero story
 Greetings, our mighty Hero!
-The corrupted aristocracy of this state has decided to perform a forbidden ritual to gather more riches from this already dying world. You must stop them by all means: destroy the artefacts needed to perform the ritual by tossing them to the toxic flames of Mount Doom, and slaughter those who serve the aristocrat Commander. The ritual must be performed when the stars are in alignment, so delaying the ritual will also do. Press SPACE to continue.
+The corrupted aristocracy of this state has decided to perform a forbidden ritual to gather more riches from this already dying world. You must stop them by all means: destroy the artefacts needed to perform the ritual by tossing them to the toxic flames of Mount Doom, and slaughter those who serve the greedy Commander. The ritual must be performed when the stars are in alignment, so delaying the ritual will also do. Press SPACE to continue.
 
 # commander pre-story
-The following is the background story for the hnored Commander. The Hero should look away. Press SPACE to continue.
+The following is the background story for the honored Commander. The Hero should look away. Press SPACE to continue.
 
 # commander story
 Greetings, our honored Commander!
-The Elders have decided to finally migrate our people from this dying world. To accomplish this a sacred teleportation ritual has to be performed. It's ingredients are scattered over the remains of this world and need to be gathered to the ritual site before the time runs out. You were chosen to do this with your might army. But watch out for the Hero, this arrogant youth might unknowingly doom us all by destroying the artifacts and slaughtering his own people sent to gather them. Press SPACE to continue.
+The Elders have decided to finally migrate our people from this dying world. To accomplish this, a sacred teleportation ritual has to be performed. It's ingredients are scattered over the remains of this world and need to be gathered to the ritual site in time. You, the leader of a mighty army, were chosen to do this. But watch out for the "Hero". This arrogant youth is so attached to his own delusions that he might unknowingly doom us all by destroying the artefacts and slaughtering his own people sent to gather them.
+We have divined the artefacts required to perform the ritual with the stars aligned as they are now, and they are:
+<generated list>
+Press SPACE to continue.
 
 # pre-game
 Press SPACE when both players are ready.
 
 # hero-end
-The ritual failed! The people of this world permanently lost their means of finding a new homeworld as their home continues to crumble and surrender to the toxic lava.
+The ritual failed! 
+Life continues on as usual, and the people continue living in fear of the toxic lava bubbling up ever closer to their homes. It looks like the end is nigh.
 
 # commander-end
-The ritual succeeded! Our people has now been teleported to a new world where they may continue living in peace.
+The ritual succeeded! 
+The ruling class and half of the other population disappeared overnight. The Hero tries to unite the people under a new government, but they no longer believe in him. The lava creeps closer, day by day.
