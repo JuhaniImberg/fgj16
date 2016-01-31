@@ -21,7 +21,9 @@ function menu:draw()
 
     love.graphics.setFont(self.fonts[1])
     love.graphics.setColor(255, 255, 255)
-    love.graphics.printf(self.message, 0, 30, width, "center")
+    love.graphics.printf(self.title, 0, 30, width, "center")
+        love.graphics.setFont(self.fonts[2])
+    love.graphics.printf(self.message, 600, 400, width, "center")
 end
 
 function menu:keyreleased(key)

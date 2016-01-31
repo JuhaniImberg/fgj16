@@ -162,7 +162,8 @@ function game:update(dt)
 
     if self.hero.hp <= 0 then
         self.gameOver = true
-        endstate.message = "The hero died!"
+        endstate.title = "The ritual succeeded!"
+        endstate.message = "Our people has now been teleported to a new world where they may continue living in peace."
         return
     end
 
