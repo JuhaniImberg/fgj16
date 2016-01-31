@@ -63,10 +63,12 @@ function menu:select()
 end
 
 function menu:playGame()
+    love.audio.stop(self.music)
     Gamestate.switch(game)
 end
 
 function menu:mapEditor()
+    love.audio.stop(self.music)
     Gamestate.switch(editor)
 end
 
