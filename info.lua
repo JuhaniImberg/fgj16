@@ -24,7 +24,7 @@ function info:draw()
     love.graphics.setColor(255, 255, 255)
     love.graphics.printf("Greetings, our mighty Hero!", 0, 0, width, "center")
         love.graphics.setFont(self.fonts[2])
-        love.graphics.printf("The corrupted aristocracy of this state has decided to perform a forbidden ritual to gather more riches from this already dying world. You must stop them by all means: destroy the artefacts needed to perform the ritual by tossing them to the toxic flames of Mount Doom, and slaughter those who serve the greedy Commander. The ritual must be performed when the stars are in alignment, so delaying the ritual will also do. Press any key to continue.", 10, 300, 53*24/2, "center")
+        love.graphics.printf("The corrupt aristocracy of this state has decided to perform a forbidden ritual to gather more riches from this already dying world. You must stop them by any means: destroy the artefacts needed to perform the ritual by tossing them to the toxic flames of Mount Doom, and slaughter those who serve the greedy Commander. The ritual must be performed when the stars are in alignment, so delaying the ritual will also do. Press any key to continue.", 10, 300, 53*24/2, "center")
 
             love.graphics.setFont(self.fonts[1])
             love.graphics.setColor(255, 255, 255)
