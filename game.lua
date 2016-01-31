@@ -194,7 +194,6 @@ function game:draw()
     for i, nitem in ipairs(self.items) do
         nitem:draw()
     end
-    self.commander:draw()
     for i, entity in ipairs(self.entities) do
         entity:draw()
     end
@@ -213,6 +212,7 @@ function game:draw()
     love.graphics.setCanvas()
     love.graphics.clear()
     pp.draw()
+    self.commander:draw()
 end
 
 function game:joystickadded(joystick)

@@ -27,10 +27,16 @@ Commander = Class{
         end
     end,
     draw = function(self)
-        love.graphics.setColor(0, 0, 0)
+        if math.floor(love.timer.getTime()*2) % 2 == 0 then
+            love.graphics.setColor(0, 0, 0)
+        else
+            love.graphics.setColor(255, 255, 255, 255)
+        end
+
         local rpos = self.pos:clone()
         rpos.x = math.floor(rpos.x / 24 + 0.5) * 24
         rpos.y = math.floor(rpos.y / 24 + 0.5) * 24
+        love.graphics.setLineWidth(3)
         love.graphics.line(rpos.x, rpos.y,
                            rpos.x + self.width, rpos.y,
                            rpos.x + self.width, rpos.y + self.height,
