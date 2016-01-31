@@ -18,8 +18,11 @@ function menu:init()
     love.audio.play(self.music)
     self.font_size = 24
     self.padding = 4
-    love.graphics.setNewFont(self.font_size)
     self.roles = {"hero", "commander"}
+    self.fonts = {
+        love.graphics.newFont("PixAntiqua.ttf", 72),
+        love.graphics.newFont("PixAntiqua.ttf", self.font_size),
+    }
 end
 
 function menu:draw()
@@ -27,18 +30,18 @@ function menu:draw()
     local offset = 200
     width = width / 2
 
-    love.graphics.setNewFont(72)
+    love.graphics.setFont(self.fonts[1])
     love.graphics.setColor(255, 255, 255)
     love.graphics.printf("hero, commander", 0, 30, width, "center")
 
-    love.graphics.setNewFont(self.font_size)
+    love.graphics.setFont(self.fonts[2])
     for i, sele in ipairs(self.selection) do
         love.graphics.setColor(255, 255, 255)
         if i == self.selected then
             love.graphics.rectangle("fill", 0, offset + i * (self.font_size + self.padding), width, self.font_size + self.padding)
             love.graphics.setColor(0, 0, 0)
         end
-        love.graphics.print(sele[1], 20, offset + i * (self.font_size + self.padding))
+        love.graphics.print(sele[1], 20, offset + i * (self.font_size + self.padding) - math.floor(self.padding/3*4))
     end
 
     love.graphics.setColor(255, 255, 255)
