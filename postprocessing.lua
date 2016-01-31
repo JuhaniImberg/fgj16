@@ -4,6 +4,7 @@ local mainCanvas
 local bgc
 local fgc
 local uc
+local fading = 255
 
 local fg_shadow_shader, dark_corner_shader
 
@@ -79,6 +80,10 @@ function pp:getUnitCanvas()
     return uc
 end
 
+function pp:setFading(value)
+    fading = value
+end
+
 function pp:draw()
     love.graphics.setColor(255, 255, 255)
 
@@ -102,7 +107,7 @@ function pp:draw()
         scale = vscale
     end
     love.graphics.setCanvas()
-        love.graphics.setColor(255, 255, 255)
+        love.graphics.setColor(fading, fading, fading)
 
     love.graphics.setShader(dark_corner_shader)
     love.graphics.draw(mainCanvas, 0, 0, 0, scale, scale, 0 ,0)
