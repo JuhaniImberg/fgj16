@@ -64,6 +64,8 @@ function pp:getUnitCanvas()
 end
 
 function pp:draw()
+    love.graphics.setColor(255, 255, 255)
+    
     love.graphics.setCanvas(mainCanvas)
     love.graphics.draw(bgc)
     love.graphics.setShader(fg_shadow_shader)
@@ -77,7 +79,6 @@ function pp:draw()
     love.graphics.draw(uc)
 
 
-    love.graphics.setColor(255, 255, 255)
     local hscale = love.graphics.getWidth()/(24*53)
     local vscale = love.graphics.getHeight()/720
     local scale = hscale
