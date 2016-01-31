@@ -167,6 +167,13 @@ function game:update(dt)
         return
     end
 
+    if self.win_time <= love.timer.getTime() then
+        self.gameOver = true
+        endstate.title = "The ritual succeeded!"
+        endstate.message = "Our people has now been teleported to a new world where they may continue living in peace."
+        return
+    end
+
     for i, item in ipairs(self.items) do
         item:update(dt, self.entities)
     end
