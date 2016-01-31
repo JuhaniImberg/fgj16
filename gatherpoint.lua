@@ -23,7 +23,7 @@ GatherPoint = Class{
     end,
     draw = function(self)
         love.graphics.setColor(255, 255, 255)
-        love.graphics.printf(self.count, self.pos.x, self.pos.y, self.width, "center")
+        love.graphics.printf(self.count, self.pos.x, self.pos.y - 10, self.width, "center")
     end
 }
 

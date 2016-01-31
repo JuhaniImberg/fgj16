@@ -33,7 +33,7 @@ function game:init()
     self:genRandomItemList(8, 5)
 
     self.mtdoom =  MtDoom(vector(24 * 48, 24 * 26))
-    self.hq = HQ(vector(24, 28 * 24))
+    self.hq = HQ(vector(24 * 3, 24 * 26))
     table.insert(self.entities, self.mtdoom)
     table.insert(self.entities, self.hq)
 
