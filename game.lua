@@ -58,6 +58,8 @@ function game:init()
     self.last_pool = 0
     self.pool_cd = 10
 
+    self.win_time = love.timer.getTime() + 180
+
     local joysticks = love.joystick.getJoysticks()
     self.hero:setJoystick(joysticks[1])
     self.commander:setJoystick(joysticks[2])
@@ -201,6 +203,13 @@ function game:draw()
     end
     self.hp_meter:draw()
     self.pool_meter:draw()
+
+    local width, height = love.graphics.getDimensions()
+    love.graphics.setColor(0, 0, 0, 120)
+    love.graphics.rectangle("fill", (width / 2) - 40, 0, 80, 32)
+    love.graphics.setColor(255, 255, 255, 255)
+    love.graphics.printf(math.floor(self.win_time - love.timer.getTime()), 0, -8, width, "center")
+
     love.graphics.setCanvas()
     love.graphics.clear()
     pp.draw()
