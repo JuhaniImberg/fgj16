@@ -48,21 +48,21 @@ ItemType = Class{
 }
 
 itemtypes = {
-    ItemType("Beehive", love.graphics.newImage("graphics/beehive.png"), vector(9,10)),
-    ItemType("Bucket", love.graphics.newImage("graphics/bucket.png"), vector(24,15)),
+    ItemType("Beehive", love.graphics.newImage("graphics/beehive.png"), vector(11,8)),
+    ItemType("Lavarock", love.graphics.newImage("graphics/lavarock.png"), vector(35,29)),
+    ItemType("Bucket", love.graphics.newImage("graphics/bucket.png"), vector(24,19)),
     ItemType("Coin", love.graphics.newImage("graphics/coin.png"), vector(25,28)),
-    ItemType("Crown", love.graphics.newImage("graphics/crown.png"), vector(1,1)),
+    ItemType("Crown", love.graphics.newImage("graphics/crown.png"), vector(36,14)),
     ItemType("Deadfish", love.graphics.newImage("graphics/deadfish.png"), vector(28,5)),
-    ItemType("Excalibur", love.graphics.newImage("graphics/enchantedsword.png"), vector(4,7)),
-    ItemType("Fang", love.graphics.newImage("graphics/fang.png"), vector(1,1)),
-    ItemType("Goat", love.graphics.newImage("graphics/goat.png"), vector(17,11)),
+    ItemType("Excalibur", love.graphics.newImage("graphics/enchantedsword.png"), vector(4,4)),
+    ItemType("Fang", love.graphics.newImage("graphics/fang.png"), vector(41,10)),
+    ItemType("Goat", love.graphics.newImage("graphics/goat.png"), vector(18,11)),
     ItemType("Goblet", love.graphics.newImage("graphics/goblet.png"), vector(14,1)),
     ItemType("Pearl", love.graphics.newImage("graphics/pearl.png"), vector(28,15)),
-    ItemType("PinkOrb", love.graphics.newImage("graphics/pinkorb.png"), vector(1,1)),
-    ItemType("Ruby", love.graphics.newImage("graphics/ruby.png"), vector(1,1)),
+    ItemType("Ruby", love.graphics.newImage("graphics/ruby.png"), vector(51,12)),
     ItemType("Fiddle", love.graphics.newImage("graphics/scarecrow.png"), vector(23,12)),
-    ItemType("Shovel", love.graphics.newImage("graphics/shovel.png"), vector(1,1)),
-    ItemType("Tiara", love.graphics.newImage("graphics/tiara.png"), vector(1,1)),
+    ItemType("Shovel", love.graphics.newImage("graphics/shovel.png"), vector(32,2)),
+    ItemType("Tiara", love.graphics.newImage("graphics/tiara.png"), vector(47,5)),
 }
 
 return {
