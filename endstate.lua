@@ -22,6 +22,8 @@ function menu:draw()
     love.graphics.setFont(self.fonts[1])
     love.graphics.setColor(255, 255, 255)
     love.graphics.printf(self.title, 0, 30, width, "center")
+love.graphics.draw(self.image, 100, 300, 0, 2)
+self.image:setFilter("nearest", "nearest")
         love.graphics.setFont(self.fonts[2])
     love.graphics.printf(self.message, 600, 400, width, "center")
 end

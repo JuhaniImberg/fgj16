@@ -163,14 +163,16 @@ function game:update(dt)
     if self.hero.hp <= 0 then
         self.gameOver = true
         endstate.title = "The ritual succeeded!"
-        endstate.message = "Our people has now been teleported to a new world where they may continue living in peace."
+    endstate.image =  love.graphics.newImage("graphics/endscreen.png")
+        endstate.message = "The ruling class and half of the other population disappeared overnight. The Hero tries to unite the people under a new government, but they no longer believe in him. The lava creeps closer, day by day."
         return
     end
 
     if self.win_time <= love.timer.getTime() then
         self.gameOver = true
-        endstate.title = "The ritual succeeded!"
-        endstate.message = "Our people has now been teleported to a new world where they may continue living in peace."
+        endstate.title = "The ritual failed!"
+    endstate.image =  love.graphics.newImage("graphics/heroendscreen.png")
+        endstate.message = "Life continues on as usual, and the people continue living in fear of the toxic lava bubbling up ever closer to their homes. It looks like the end is nigh."
         return
     end
 
