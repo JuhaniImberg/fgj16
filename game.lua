@@ -9,7 +9,7 @@ Unit = require "unit"
 MtDoom = require "mtdoom"
 HQ = require "hq"
 Commander = require "commander"
-
+pp = require "postprocessing"
 
 local game = {}
 
@@ -47,6 +47,7 @@ function game:init()
     local joysticks = love.joystick.getJoysticks()
     self.hero:setJoystick(joysticks[1])
     self.commander:setJoystick(joysticks[2])
+    pp.init()
 end
 
 function game:addRandomUnit()
@@ -132,6 +133,7 @@ function game:update(dt)
 end
 
 function game:draw()
+    love.graphics.setCanvas(pp.getMainCanvas())
     self.tm0:draw()
     self.tm1:draw()
     for i, nitem in ipairs(self.items) do
@@ -144,6 +146,8 @@ function game:draw()
     for i, projectile in ipairs(self.projectiles) do
         projectile:draw()
     end
+    love.graphics.setCanvas()
+    pp.draw()
 end
 
 function game:joystickadded(joystick)
