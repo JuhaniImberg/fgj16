@@ -11,8 +11,7 @@ function menu:init()
     self.selected = 1
     self.selection = {
         {"Play Game", helpers.bind(self, "playGame")},
-        {"Map Editor", helpers.bind(self, "mapEditor")},
-        {"Credits", helpers.bind(self, "credits")}
+        {"Map Editor", helpers.bind(self, "mapEditor")}
     }
     self.music = love.audio.newSource( "sound/menu.ogg" )
     self.music:setLooping(true)
@@ -52,6 +51,19 @@ function menu:draw()
     for i, joystick in ipairs(joysticks) do
         love.graphics.print(i .. ": " .. joystick:getName() .. " as " .. self.roles[i], width + 40, self.font_size + i * self.font_size)
     end
+
+
+        love.graphics.print("Credits", 20, 400)
+        love.graphics.print("Juhani Imberg", 40, 400+self.font_size)
+        love.graphics.print("Coding", 300, 400+self.font_size)
+        love.graphics.print("Nicklas Ahlskog", 40, 400+2*self.font_size)
+        love.graphics.print("Coding", 300, 400+2*self.font_size)
+        love.graphics.print("Esa Niemi", 40, 400+3*self.font_size)
+        love.graphics.print("Graphics", 300, 400+3*self.font_size)
+        love.graphics.print("Jaakko Hannikainen", 40, 400+4*self.font_size)
+        love.graphics.print("Sounds", 300, 400+4*self.font_size)
+        love.graphics.print("Allan Palmu", 40, 400+5*self.font_size)
+        love.graphics.print("Lead Designer", 300, 400+5*self.font_size)
 end
 
 function menu:up()
