@@ -233,7 +233,7 @@ function game:draw()
     self.hp_meter:draw()
     self.pool_meter:draw()
 
-    local width, height = love.graphics.getDimensions()
+    local width = 53 * 24
     love.graphics.setColor(0, 0, 0, 120)
     love.graphics.rectangle("fill", (width / 2) - 40, 0, 80, 32)
     love.graphics.setColor(255, 255, 255, 255)
