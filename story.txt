@@ -3,7 +3,7 @@ The following is the background story for the mighty Hero of this world. The Com
 
 # hero story
 Greetings, our mighty Hero!
-The corrupted aristocracy of this state has decided to perform a forbidden ritual to gather more riches from this already dying world. You must stop them by all means: destroy the artefacts needed to perform the ritual by tossing them to the toxic flames of Mount Doom, and slaughter those who serve the aristocrat Commander. The ritual will permanently fail if it's ingredients are not gathered quickly enough. Press SPACE to continue.
+The corrupted aristocracy of this state has decided to perform a forbidden ritual to gather more riches from this already dying world. You must stop them by all means: destroy the artefacts needed to perform the ritual by tossing them to the toxic flames of Mount Doom, and slaughter those who serve the aristocrat Commander. The ritual must be performed when the stars are in alignment, so delaying the ritual will also do. Press SPACE to continue.
 
 # commander pre-story
 The following is the background story for the hnored Commander. The Hero should look away. Press SPACE to continue.
