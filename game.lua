@@ -24,7 +24,7 @@ function game:init()
     end
 
     self.tm0 = TM(tileset, map0, 3)
-    self.tm1 = TM(tileset, map1, 3)
+    self.tm1 = TM(tileset, map1, 1.5)
     self.entities = {}
     self.projectiles = {}
     self.items = {}

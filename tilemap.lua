@@ -66,7 +66,7 @@ TileMap = Class{
             local a = self.animated[i]
             local id = self.ids[a.y][a.x]
             local ti = self.tileset:getTileInfo(self.map[a.y][a.x])
-            local quad = ti:getNextQuad(math.floor((self.frame+a.s) / self.animation_speed))
+            local quad = ti:getNextQuad(math.floor((self.frame) / self.animation_speed)+a.s)
             self.sb:set(id, quad,
                 (a.x-1)*self.tileset.tile_width,(a.y-1)*self.tileset.tile_height)
         end
