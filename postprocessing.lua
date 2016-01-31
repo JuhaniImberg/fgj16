@@ -70,6 +70,10 @@ function pp:draw()
     love.graphics.draw(fgc)
     love.graphics.setShader()
     love.graphics.draw(fgc)
+
+    love.graphics.setShader(fg_shadow_shader)
+    love.graphics.draw(uc)
+    love.graphics.setShader()
     love.graphics.draw(uc)
 
 
