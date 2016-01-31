@@ -10,6 +10,7 @@ MtDoom = require "mtdoom"
 HQ = require "hq"
 Commander = require "commander"
 pp = require "postprocessing"
+meter = require "meter"
 
 local game = {}
 
@@ -44,6 +45,18 @@ function game:init()
     self.music:setLooping(true)
     love.audio.play(self.music)
 
+    self.hp_meter = meter.hp
+    self.hp_meter.valuer = helpers.bind(self.hero, 'getHP')
+
+    self.pool_meter = meter.pool
+    self.pool_meter.valuer = helpers.bind(self, 'getPoolSize')
+
+    self.pool_size = 3
+    self.pool_max = 6
+    self.pool_onmap = 0
+    self.last_pool = 0
+    self.pool_cd = 10
+
     local joysticks = love.joystick.getJoysticks()
     self.hero:setJoystick(joysticks[1])
     self.commander:setJoystick(joysticks[2])
@@ -56,6 +69,11 @@ function game:addRandomUnit()
 end
 
 function game:spawnUnit(target)
+    if self.pool_size == 0 then
+        return
+    end
+    self.pool_size = self.pool_size - 1
+    self.pool_onmap = self.pool_onmap + 1
     table.insert(self.entities, Unit(self.hq.pos:clone(),
                                      target:clone()))
 end
@@ -68,6 +86,9 @@ end
 function game:rekt(entity)
     for i=#self.entities, 1, -1 do
         if self.entities[i] == entity then
+            if self.entities[i].unit then
+                self.pool_onmap = self.pool_onmap - 1
+            end
             table.remove(self.entities, i)
         end
     end
@@ -118,6 +139,13 @@ function game:genRandomItemList(count, ritual_count)
 end
 
 function game:update(dt)
+    if self.last_pool + self.pool_cd < love.timer.getTime() then
+        if self.pool_max > self.pool_size then
+            self.pool_size = self.pool_size + 1
+        end
+        self.last_pool = love.timer.getTime()
+    end
+
     self.tm0:update(dt)
     self.tm1:update(dt)
     for i, item in ipairs(self.items) do
@@ -130,6 +158,10 @@ function game:update(dt)
     for i, projectile in ipairs(self.projectiles) do
         projectile:update(dt, self.entities, self)
     end
+end
+
+function game:getPoolSize()
+    return self.pool_size
 end
 
 function game:draw()
@@ -151,6 +183,8 @@ function game:draw()
     for i, projectile in ipairs(self.projectiles) do
         projectile:draw()
     end
+    self.hp_meter:draw()
+    self.pool_meter:draw()
     love.graphics.setCanvas()
     love.graphics.clear()
     pp.draw()

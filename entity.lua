@@ -30,6 +30,9 @@ Entity = Class{
             self:gettingRekt()
         end
     end,
+    getHP = function(self)
+        return self.hp
+    end,
     checkRekt = function(self, game)
         if self.hp <= 0 then
             self:dropItem()
