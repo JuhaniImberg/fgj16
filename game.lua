@@ -133,9 +133,14 @@ function game:update(dt)
 end
 
 function game:draw()
-    love.graphics.setCanvas(pp.getMainCanvas())
+    love.graphics.setCanvas(pp.getBGCanvas())
+    love.graphics.clear()
     self.tm0:draw()
+    love.graphics.setCanvas(pp.getFGCanvas())
+    love.graphics.clear()
     self.tm1:draw()
+    love.graphics.setCanvas(pp.getUnitCanvas())
+    love.graphics.clear()
     for i, nitem in ipairs(self.items) do
         nitem:draw()
     end
@@ -147,6 +152,7 @@ function game:draw()
         projectile:draw()
     end
     love.graphics.setCanvas()
+    love.graphics.clear()
     pp.draw()
 end
 
