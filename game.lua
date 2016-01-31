@@ -26,6 +26,7 @@ function game:init()
     self.tm0 = TM(tileset, map0, 3)
     self.tm1 = TM(tileset, map1, 3)
     self.entities = {}
+    self.projectiles = {}
     self.items = {}
 
     self:genRandomItemList(8, 5)
@@ -42,6 +43,10 @@ function game:init()
     self.music = love.audio.newSource( "sound/game.ogg" )
     self.music:setLooping(true)
     love.audio.play(self.music)
+
+    local joysticks = love.joystick.getJoysticks()
+    self.hero:setJoystick(joysticks[1])
+    self.commander:setJoystick(joysticks[2])
 end
 
 function game:addRandomUnit()
@@ -63,6 +68,18 @@ function game:rekt(entity)
     for i=#self.entities, 1, -1 do
         if self.entities[i] == entity then
             table.remove(self.entities, i)
+        end
+    end
+end
+
+function game:fire(projectile)
+    table.insert(self.projectiles, projectile)
+end
+
+function game:projectileRekt(projectile)
+    for i=#self.projectiles, 1, -1 do
+        if self.projectiles[i] == projectile then
+            table.remove(self.projectiles, i)
         end
     end
 end
@@ -109,6 +126,9 @@ function game:update(dt)
     for i, entity in ipairs(self.entities) do
         entity:update(dt, helpers.bind(self.tm1, 'collides'), self, helpers.bind(self.tm1, 'findPath'))
     end
+    for i, projectile in ipairs(self.projectiles) do
+        projectile:update(dt, self.entities, self)
+    end
 end
 
 function game:draw()
@@ -120,6 +140,9 @@ function game:draw()
     self.commander:draw()
     for i, entity in ipairs(self.entities) do
         entity:draw()
+    end
+    for i, projectile in ipairs(self.projectiles) do
+        projectile:draw()
     end
 end
 

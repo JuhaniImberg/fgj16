@@ -8,7 +8,3 @@ function love.load()
     Gamestate.registerEvents()
     Gamestate.switch(menu)
 end
-
-function love.joystickadded(joystick)
-    Gamestate.current():joystickadded(joystick)
-end

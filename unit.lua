@@ -12,6 +12,7 @@ Unit = Class{
         self.speed = 75
         self.flipper = false
         self.target = target
+        self.hp = 2
     end,
     update = function(self, dt, collfn, game, pathfn)
         self:checkRekt(game)

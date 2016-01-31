@@ -14,6 +14,8 @@ Entity = Class{
         self.last_hit = 0
         self.hurt_time = 0.25
         self.hurt_cd = 0.5
+        self.fire_cd = 0.4
+        self.last_fire = 0
     end,
     takeDamage = function(self)
         if self.hp <= 0 then
@@ -30,6 +32,7 @@ Entity = Class{
     end,
     checkRekt = function(self, game)
         if self.hp <= 0 then
+            self:dropItem()
             game:rekt(self)
         end
     end,

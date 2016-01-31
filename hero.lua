@@ -1,9 +1,11 @@
 vector = require "hump.vector"
 
 CollidingEntity = require "collidingentity"
+Projectile = require "projectile"
 
 Hero = Class{
     __includes = CollidingEntity,
+    hero = true,
     init = function(self, pos)
         CollidingEntity.init(self, pos, 18, 18)
         self.image = love.graphics.newImage("graphics/hero1.png")
@@ -25,28 +27,35 @@ Hero = Class{
             return
         end
 
+        local x_axis_1, y_axis_1, _, x_axis_2, y_axis_2 = self.joystick:getAxes()
+        local axis_1 = vector(x_axis_1, y_axis_1)
+        local axis_2 = vector(x_axis_2, y_axis_2)
+
+        if self.last_fire + self.fire_cd < love.timer.getTime() and axis_2:len() > 0.1 then
+            self.last_fire = love.timer.getTime()
+            game:fire(Projectile(self:middlepoint(), axis_2:normalized(), "unit"))
+        end
+
         if self.joystick:isGamepadDown("a") then
             self:dropItem()
         end
 
-        x_axis, y_axis = self.joystick:getAxes()
-        axis = vector(x_axis, y_axis)
+        if axis_1:len() > 0.1 then
+            self:move(axis_1, dt, collfn)
 
-        if axis:len() > 0.1 then
-            self:move(axis, dt, collfn)
-
-            if math.abs(axis.x) > math.abs(axis.y) then
+            if math.abs(axis_1.x) > math.abs(axis_1.y) then
                 self.image_range = {2, 6}
-                self.flipped = axis.x < 0
+                self.flipped = axis_1.x < 0
             else
                 self.flipped = false
-                if axis.y < 0 then
+                if axis_1.y < 0 then
                     self.image_range = {6, 10}
                 else
                     self.image_range = {10, 14}
                 end
             end
         end
+
 
     end,
     draw = function(self)

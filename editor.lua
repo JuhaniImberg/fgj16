@@ -40,10 +40,6 @@ function editor:draw()
     self.commander:draw()
 end
 
-function editor:joystickadded(joystick)
-    self.commander:setJoystick(joystick)
-end
-
 function editor:save()
     for i, tm in ipairs(self.layers) do
         print("Saving map-layer-" .. (i-1) .. ".data")
