@@ -1,10 +1,9 @@
 Gamestate = require "hump.gamestate"
 
-menu = {}
+endstate = {}
 
-function menu:init()
-    self.music = love.audio.newSource( "sound/menu.ogg" )
-    self.music:setLooping(true)
+function endstate:init()
+    self.music = love.audio.newSource( "sound/ending.ogg" )
     love.audio.play(self.music)
     self.font_size = 24
     self.padding = 4
@@ -14,7 +13,7 @@ function menu:init()
     }
 end
 
-function menu:draw()
+function endstate:draw()
     local width, height = love.graphics.getDimensions()
     local offset = 200
     width = width / 2
@@ -22,16 +21,23 @@ function menu:draw()
     love.graphics.setFont(self.fonts[1])
     love.graphics.setColor(255, 255, 255)
     love.graphics.printf(self.title, 0, 30, width, "center")
-love.graphics.draw(self.image, 100, 300, 0, 2)
-self.image:setFilter("nearest", "nearest")
-        love.graphics.setFont(self.fonts[2])
+    love.graphics.draw(self.image, 100, 300, 0, 2)
+    self.image:setFilter("nearest", "nearest")
+    love.graphics.setFont(self.fonts[2])
     love.graphics.printf(self.message, 600, 400, width, "center")
 end
 
-function menu:keyreleased(key)
+function endstate:menu()
+    love.audio.stop(self.music)
+    Gamestate.switch(menu)
 end
 
-function menu:gamepadpressed(joystick, button)
+function endstate:keyreleased(key)
+    self:menu()
 end
 
-return menu
+function endstate:gamepadpressed(joystick, button)
+    self:menu()
+end
+
+return endstate

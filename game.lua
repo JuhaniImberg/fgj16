@@ -16,6 +16,10 @@ endstate = require "endstate"
 local game = {}
 
 function game:init()
+    pp.init()
+end
+
+function game:enter()
     map0 = {}
     for line in io.lines("map-layer-0.data") do
         table.insert(map0, line)
@@ -58,12 +62,14 @@ function game:init()
     self.last_pool = 0
     self.pool_cd = 10
 
+    self.gameOver = false
+    pp.fading = 255
+
     self.win_time = love.timer.getTime() + 180
 
     local joysticks = love.joystick.getJoysticks()
     self.hero:setJoystick(joysticks[1])
     self.commander:setJoystick(joysticks[2])
-    pp.init()
 end
 
 function game:addRandomUnit()
