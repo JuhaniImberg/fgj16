@@ -3,6 +3,12 @@ vector = require "hump.vector"
 Entity = require "entity"
 Projectile = require "projectile"
 
+local pain_sounds = {
+    love.audio.newSource("sound/pain1.ogg"),
+    love.audio.newSource("sound/pain2.ogg"),
+    love.audio.newSource("sound/pain3.ogg")
+}
+
 Unit = Class{
     __includes = Entity,
     unit = true,
@@ -86,6 +92,11 @@ Unit = Class{
         pos.y = math.floor(pos.y/24)
         self.trg = (pathfn(pos,mid) or {nil})[1]
         return self.trg
+    end,
+    gettingRekt = function(self)
+        local sound = pain_sounds[math.random(1, #pain_sounds)]
+        sound:seek(0.1)
+        love.audio.play(sound)
     end
 }
 
