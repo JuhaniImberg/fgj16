@@ -15,7 +15,7 @@ Hero = Class{
         self.image_range = {1, 5}
         self.maxhp = self.hp
         self.last_heal = 0
-        self.heal_cd = 20
+        self.heal_cd = 12
     end,
     setJoystick = function(self, joystick)
         self.joystick = joystick
