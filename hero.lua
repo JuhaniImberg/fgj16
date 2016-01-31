@@ -41,7 +41,7 @@ Hero = Class{
         local axis_1 = vector(x_axis_1, y_axis_1)
         local axis_2 = vector(x_axis_2, y_axis_2)
 
-        if self.last_fire + self.fire_cd < love.timer.getTime() and axis_2:len() > 0.1 then
+        if self.last_fire + self.fire_cd < love.timer.getTime() and axis_2:len() > 0.4 then
             self.last_fire = love.timer.getTime()
             game:fire(Projectile(self:middlepoint(), axis_2:normalized(), "unit"))
         end
