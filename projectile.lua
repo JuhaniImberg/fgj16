@@ -1,7 +1,12 @@
 Class = require "hump.class"
 
 
-proj_img = love.graphics.newImage("graphics/puncheffect.png")
+local proj_img = love.graphics.newImage("graphics/puncheffect.png")
+local proj_sounds = {
+    love.audio.newSource("sound/sword1.ogg"),
+    love.audio.newSource("sound/sword2.ogg"),
+    love.audio.newSource("sound/sword3.ogg")
+}
 
 Projectile = Class{
     init = function(self, pos, dir, target, lifetime)
@@ -11,6 +16,8 @@ Projectile = Class{
         self.speed = 200
         self.lifetime = lifetime or 0.3
         self.quad = love.graphics.newQuad(0, 0, 24, 24, 96, 24)
+        local sound = proj_sounds[math.random(1, #proj_sounds)]
+        love.audio.play(sound)
     end,
     update = function(self, dt, entities, game)
         self.pos = self.pos + (dt * self.speed * self.dir)
