@@ -59,8 +59,9 @@ function game:enter()
     self.pool_size = 3
     self.pool_max = 6
     self.pool_onmap = 0
+    self.pool_maxonmap = 6
     self.last_pool = 0
-    self.pool_cd = 10
+    self.pool_cd = 7
     self.ritual_items_needed = 4
     self.ritual_items = 6
 
@@ -80,7 +81,7 @@ function game:addRandomUnit()
 end
 
 function game:spawnUnit(target)
-    if self.pool_size == 0 then
+    if self.pool_size == 0 or self.pool_onmap >= self.pool_maxonmap then
         return
     end
     self.pool_size = self.pool_size - 1
