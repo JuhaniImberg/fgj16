@@ -12,6 +12,7 @@ Commander = require "commander"
 pp = require "postprocessing"
 meter = require "meter"
 endstate = require "endstate"
+itemlist = require "itemlist"
 
 local game = {}
 
@@ -33,9 +34,7 @@ function game:enter()
     self.tm1 = TM(tileset, map1, 1.5)
     self.entities = {}
     self.projectiles = {}
-    self.items = {}
-
-    self:genRandomItemList(8, 6)
+    self.items = itemlist.items
 
     self.mtdoom =  MtDoom(vector(24 * 48, 24 * 26))
     self.hq = HQ(vector(24 * 3, 24 * 26))
@@ -95,11 +94,6 @@ function game:spawnUnit(target)
     table.insert(self.entities, unit)
 end
 
-function game:addItem(item_type, ritual)
-    local nitem = item.Item(item_type, ritual)
-    table.insert(self.items, nitem)
-end
-
 function game:rekt(entity)
     for i=#self.entities, 1, -1 do
         if self.entities[i] == entity then
@@ -130,29 +124,6 @@ function game:setUnitTarget(target)
                                        helpers.bind(self.tm1, 'findPath'))
         end
     end
-end
-
-function game:addRandomItem()
-    local ntype = item.itemtypes[math.random(#item.itemtypes)]
-    local nitem = item.Item(vector(math.random(1, 51) * 24,
-                                   math.random(1, 29) * 24),
-                            ntype)
-    table.insert(self.items, nitem)
-end
-
-function game:genRandomItemList(count, ritual_count)
-    local all = {}
-    local items = {}
-    for i=1, #item.itemtypes do
-        table.insert(all, item.itemtypes[i])
-    end
-    for i=1, count do
-        local index = math.random(1, #all)
-        self:addItem(all[index], i<=ritual_count)
-        table.remove(all, index)
-    end
-
-    return items
 end
 
 function game:update(dt)

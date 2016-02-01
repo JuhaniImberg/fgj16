@@ -3,7 +3,7 @@ Gamestate = require "hump.gamestate"
 helpers = require "helpers"
 game = require "game"
 editor = require "editor"
-info = require "info"
+intro_hero = require "intro_hero"
 
 menu = {}
 
@@ -80,7 +80,7 @@ end
 
 function menu:playGame()
     love.audio.stop(self.music)
-    Gamestate.switch(info)
+    Gamestate.switch(intro_hero)
 end
 
 function menu:mapEditor()
