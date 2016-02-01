@@ -35,7 +35,7 @@ function itemlist:genRandomItemList(count, ritual_count)
         table.remove(all, index)
     end
 
-    self:shuffle()
+    --self:shuffle()
 
     return items
 end
