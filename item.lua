@@ -10,6 +10,7 @@ Item = Class{
         self.destroyed = false
         self.captured = false
         self.ritual_item = ritual
+        self.carrier = nil
     end,
     middlepoint = function(self)
         return self.pos + vector(self.width / 2, self.height / 2)
@@ -26,12 +27,20 @@ Item = Class{
             end
         end
     end,
+    pickup = function(self, pickerup)
+        self.being_carried = true
+        self.carrier = pickerup
+    end,
     dropped = function(self)
         self.being_carried = false
+        self.carrier = nil
     end,
     draw = function(self)
+        if self.destroyed then return end
         if not self.being_carried then
             self.itype:draw(self.pos, self.width, self.height)
+        else
+            self.itype:draw(self.carrier.pos+vector((self.carrier.width-self.width)/2+1,-self.height*0.75), self.width, self.height)
         end
     end
 }
@@ -48,21 +57,21 @@ ItemType = Class{
 }
 
 itemtypes = {
-    ItemType("Beehive", love.graphics.newImage("graphics/beehive.png"), vector(11,8)),
-    ItemType("Lavarock", love.graphics.newImage("graphics/lavarock.png"), vector(35,29)),
-    ItemType("Bucket", love.graphics.newImage("graphics/bucket.png"), vector(24,19)),
-    ItemType("Coin", love.graphics.newImage("graphics/coin.png"), vector(25,28)),
-    ItemType("Crown", love.graphics.newImage("graphics/crown.png"), vector(36,14)),
-    ItemType("Deadfish", love.graphics.newImage("graphics/deadfish.png"), vector(28,5)),
-    ItemType("Excalibur", love.graphics.newImage("graphics/enchantedsword.png"), vector(4,4)),
-    ItemType("Fang", love.graphics.newImage("graphics/fang.png"), vector(41,10)),
-    ItemType("Goat", love.graphics.newImage("graphics/goat.png"), vector(18,11)),
-    ItemType("Goblet", love.graphics.newImage("graphics/goblet.png"), vector(14,1)),
-    ItemType("Pearl", love.graphics.newImage("graphics/pearl.png"), vector(28,15)),
-    ItemType("Ruby", love.graphics.newImage("graphics/ruby.png"), vector(51,12)),
-    ItemType("Fiddle", love.graphics.newImage("graphics/scarecrow.png"), vector(23,12)),
-    ItemType("Shovel", love.graphics.newImage("graphics/shovel.png"), vector(33,2)),
-    ItemType("Tiara", love.graphics.newImage("graphics/tiara.png"), vector(47,5)),
+    ItemType("beehive", love.graphics.newImage("graphics/beehive.png"), vector(11,8)),
+    ItemType("cooled hunk of lava", love.graphics.newImage("graphics/lavarock.png"), vector(35,29)),
+    ItemType("bucket", love.graphics.newImage("graphics/bucket.png"), vector(24,19)),
+    ItemType("coin", love.graphics.newImage("graphics/coin.png"), vector(25,28)),
+    ItemType("crown", love.graphics.newImage("graphics/crown.png"), vector(36,14)),
+    ItemType("dead fish", love.graphics.newImage("graphics/deadfish.png"), vector(28,5)),
+    ItemType("sacred blade", love.graphics.newImage("graphics/enchantedsword.png"), vector(4,4)),
+    ItemType("fang", love.graphics.newImage("graphics/fang.png"), vector(41,10)),
+    ItemType("goat", love.graphics.newImage("graphics/goat.png"), vector(18,11)),
+    ItemType("goblet", love.graphics.newImage("graphics/goblet.png"), vector(14,1)),
+    ItemType("pearl", love.graphics.newImage("graphics/pearl.png"), vector(28,15)),
+    ItemType("ruby", love.graphics.newImage("graphics/ruby.png"), vector(51,12)),
+    ItemType("scarecrow", love.graphics.newImage("graphics/scarecrow.png"), vector(23,12)),
+    ItemType("shovel", love.graphics.newImage("graphics/shovel.png"), vector(33,2)),
+    ItemType("tiara", love.graphics.newImage("graphics/tiara.png"), vector(47,5)),
 }
 
 return {

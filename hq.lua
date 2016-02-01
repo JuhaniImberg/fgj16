@@ -6,6 +6,7 @@ HQ = Class{
     init = function(self, pos)
         GatherPoint.init(self, pos)
         self.captures = true
+        self.textcolor = {0,255,255}
     end,
 }
 

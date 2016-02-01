@@ -10,6 +10,7 @@ GatherPoint = Class{
         self.radius = 48
         self.items = {}
         self.ritual_items = 0
+        self.textcolor = {255,255,255}
     end,
     update = function(self, dt)
         if self.carrying then
@@ -28,7 +29,9 @@ GatherPoint = Class{
         end
     end,
     draw = function(self)
-        love.graphics.setColor(255, 255, 255)
+        love.graphics.setColor(0, 0, 0, 180)
+        love.graphics.printf(self.count, self.pos.x+2, self.pos.y - 12, self.width, "center")
+        love.graphics.setColor(self.textcolor[1], self.textcolor[2], self.textcolor[3])
         love.graphics.printf(self.count, self.pos.x, self.pos.y - 10, self.width, "center")
     end
 }

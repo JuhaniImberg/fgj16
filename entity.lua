@@ -16,6 +16,8 @@ Entity = Class{
         self.hurt_cd = 0.5
         self.fire_cd = 0.4
         self.last_fire = 0
+        self.last_drop = 0
+        self.pickup_cd = 0.25
     end,
     takeDamage = function(self)
         if self.hp <= 0 then
@@ -52,11 +54,12 @@ Entity = Class{
 
     end,
     pickItem = function(self, item)
-        if self.carrying then
+        if self.carrying or self.last_drop + self.pickup_cd > love.timer.getTime() then
             return false
         end
         self.carrying = item
         self.speed = self.slowspeed
+        item:pickup(self)
         return true
     end,
     dropItem = function(self)
@@ -69,9 +72,10 @@ Entity = Class{
         self.carrying:dropped()
         self.carrying = nil
         self.speed = self.highspeed
+        self.last_drop = love.timer.getTime()
     end,
     drawColor = function(self)
-        if self.last_hit + self.hurt_time > love.timer.getTime() and math.random() > 0.5 then
+        if self.last_hit + self.hurt_time > love.timer.getTime() and math.floor(love.timer.getTime()*100)%2 == 0 then
             love.graphics.setColor(255, 0, 0)
         elseif self.carrying and love.timer.getTime() % 1 < 0.5 then
             love.graphics.setColor(255, 255, 0)
