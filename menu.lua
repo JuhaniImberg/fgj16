@@ -8,14 +8,12 @@ intro_hero = require "intro_hero"
 menu = {}
 
 function menu:init()
-    self.selected = 1
     self.selection = {
         {"Play Game", helpers.bind(self, "playGame")},
         {"Map Editor", helpers.bind(self, "mapEditor")}
     }
     self.music = love.audio.newSource( "sound/menu.ogg" )
     self.music:setLooping(true)
-    love.audio.play(self.music)
     self.font_size = 24
     self.padding = 4
     self.roles = {"hero", "commander"}
@@ -23,6 +21,11 @@ function menu:init()
         love.graphics.newFont("PixAntiqua.ttf", 72),
         love.graphics.newFont("PixAntiqua.ttf", self.font_size),
     }
+end
+
+function menu:enter()
+    self.selected = 1
+    love.audio.play(self.music)
 end
 
 function menu:draw()

@@ -75,7 +75,7 @@ Entity = Class{
         self.last_drop = love.timer.getTime()
     end,
     drawColor = function(self)
-        if self.last_hit + self.hurt_time > love.timer.getTime() and math.floor(love.timer.getTime()*100)%2 == 0 then
+        if self.last_hit + self.hurt_time > love.timer.getTime() and (love.timer.getTime()*10) % 2 < 1 then
             love.graphics.setColor(255, 0, 0)
         elseif self.carrying and love.timer.getTime() % 1 < 0.5 then
             love.graphics.setColor(255, 255, 0)

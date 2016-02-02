@@ -4,8 +4,8 @@ GatherPoint = Class{
     __includes = Entity,
     init = function(self, pos)
         Entity.init(self, pos)
-        self.destroy = false
-        self.capture = false
+        self.destroys = false
+        self.captures = false
         self.count = 0
         self.radius = 48
         self.items = {}
@@ -14,18 +14,23 @@ GatherPoint = Class{
     end,
     update = function(self, dt)
         if self.carrying then
-            if self.destroy then
+            if self.destroys then
                 self.carrying.destroyed = true
             end
-            if self.capture then
+            table.insert(self.items, self.carrying)
+            if self.captures then
                 self.carrying.captured = true
             end
-            table.insert(self.items, self.carrying)
             if self.carrying.ritual_item then
                 self.ritual_items = self.ritual_items + 1
             end
             self.carrying = nil
             self.count = self.count + 1
+        end
+        if self.captures then
+            for i, item in ipairs(self.items) do
+                item.pos = item.pos + (-item.pos + self.pos + vector(math.cos(2*math.pi*(i/#self.items)+love.timer.getTime()*2)*48, math.cos(i*2+2*math.pi*love.timer.getTime()*0.7)*8 + math.sin(2*math.pi*(i/#self.items)+love.timer.getTime()*2)*48))*0.01
+            end
         end
     end,
     draw = function(self)

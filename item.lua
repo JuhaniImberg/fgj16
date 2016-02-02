@@ -37,10 +37,14 @@ Item = Class{
     end,
     draw = function(self)
         if self.destroyed then return end
-        if not self.being_carried then
+        if self.captured then
+            love.graphics.setColor(math.sin(2*math.pi*love.timer.getTime())*70+185,math.sin(2*math.pi*love.timer.getTime()+math.pi*2/3)*70+185,math.sin(2*math.pi*love.timer.getTime()+math.pi*4/3)*70+185)
+            self.itype:draw(self.pos, self.width, self.height)
+            love.graphics.setColor(255,255,255)
+        elseif not self.being_carried then
             self.itype:draw(self.pos, self.width, self.height)
         else
-            self.itype:draw(self.carrier.pos+vector((self.carrier.width-self.width)/2+1,-self.height*0.75), self.width, self.height)
+            self.itype:draw(self.carrier.pos+vector(math.floor((self.carrier.width-self.width)/2+1),math.floor(-self.height*0.75)), self.width, self.height)
         end
     end
 }

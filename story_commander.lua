@@ -12,6 +12,9 @@ function story_hero:init()
         love.graphics.newFont("PixAntiqua.ttf", 48),
         love.graphics.newFont("PixAntiqua.ttf", self.font_size),
     }
+end
+
+function story_hero:enter()
     itemlist:init()
     itemlist:genRandomItemList(8,6)
 end
